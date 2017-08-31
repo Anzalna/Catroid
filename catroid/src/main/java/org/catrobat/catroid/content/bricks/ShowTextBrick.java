@@ -62,13 +62,24 @@ public class ShowTextBrick extends UserVariableBrick {
 	public ShowTextBrick() {
 		addAllowedBrickField(BrickField.X_POSITION);
 		addAllowedBrickField(BrickField.Y_POSITION);
+		addAllowedBrickField(BrickField.VARIABLE);
 	}
 
 	public ShowTextBrick(int xPosition, int yPosition) {
 		initializeBrickFields(new Formula(xPosition), new Formula(yPosition));
 	}
 
+	public ShowTextBrick(int xPosition, int yPosition, UserVariable userVariable) {
+		this.userVariable = userVariable;
+		initializeBrickFields(new Formula(xPosition), new Formula(yPosition));
+	}
+
 	public ShowTextBrick(Formula xPosition, Formula yPosition) {
+		initializeBrickFields(xPosition, yPosition);
+	}
+
+	public ShowTextBrick(Formula xPosition, Formula yPosition, UserVariable userVariable) {
+		this.userVariable = userVariable;
 		initializeBrickFields(xPosition, yPosition);
 	}
 
@@ -238,3 +249,4 @@ public class ShowTextBrick extends UserVariableBrick {
 		super.updateUserVariableReference(into, from);
 	}
 }
+
