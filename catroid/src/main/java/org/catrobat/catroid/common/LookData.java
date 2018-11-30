@@ -254,4 +254,12 @@ public class LookData implements Serializable, Cloneable {
 		}
 		return collisionInformation;
 	}
+
+	public void setLookName(String name) {
+		this.name = name;
+	}
+
+	public void setLookFilename(String fileName) {
+		this.fileName = fileName;
+	}
 }

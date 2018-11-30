@@ -392,41 +392,41 @@ public class Scene implements Serializable {
 
 	public synchronized void correctUserVariableAndListReferences() {
 		for (Sprite sprite : spriteList) {
-			for (Brick brick : sprite.getListWithAllBricks()) {
+				for (Brick brick : sprite.getListWithAllBricks()) {
 				if (brick instanceof UserVariableBrick) {
-					((UserVariableBrick) brick).setUserVariable(dataContainer.getUserVariable(sprite, ((UserVariableBrick)
-							brick).getUserVariable().getName()));
+				((UserVariableBrick) brick).setUserVariable(dataContainer.getUserVariable(sprite, ((UserVariableBrick)
+				brick).getUserVariable().getName()));
 				}
 
 				if (brick instanceof UserListBrick) {
-					((UserListBrick) brick).setUserList(dataContainer.getUserList(sprite, ((UserListBrick) brick).getUserList().getName()));
+				((UserListBrick) brick).setUserList(dataContainer.getUserList(sprite, ((UserListBrick) brick).getUserList().getName()));
 				}
-			}
-		}
-	}
+				}
+				}
+				}
 
-	public void refreshSpriteReferences() {
+public void refreshSpriteReferences() {
 		for (Brick brick : getAllBricks()) {
-			if (!(brick instanceof BrickWithSpriteReference)) {
-				continue;
-			}
-
-			BrickWithSpriteReference referenceBrick = ((BrickWithSpriteReference) brick);
-			Sprite referencedSprite = referenceBrick.getSprite();
-			if (referencedSprite == null) {
-				continue;
-			}
-
-			Sprite newSprite = getSpriteBySpriteName(referencedSprite.getName());
-			referenceBrick.setSprite(newSprite);
+		if (!(brick instanceof BrickWithSpriteReference)) {
+		continue;
 		}
-	}
 
-	public List<Brick> getAllBricks() {
+		BrickWithSpriteReference referenceBrick = ((BrickWithSpriteReference) brick);
+		Sprite referencedSprite = referenceBrick.getSprite();
+		if (referencedSprite == null) {
+		continue;
+		}
+
+		Sprite newSprite = getSpriteBySpriteName(referencedSprite.getName());
+		referenceBrick.setSprite(newSprite);
+		}
+		}
+
+public List<Brick> getAllBricks() {
 		List<Brick> result = new ArrayList<>();
 		for (Sprite sprite : spriteList) {
-			result.addAll(sprite.getAllBricks());
+		result.addAll(sprite.getAllBricks());
 		}
 		return result;
-	}
-}
+		}
+		}

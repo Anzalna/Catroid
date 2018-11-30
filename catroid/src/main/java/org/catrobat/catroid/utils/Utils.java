@@ -88,6 +88,13 @@ public final class Utils {
 
 	private static final String TAG = Utils.class.getSimpleName();
 
+	public static void removeFromPreferences(Context context, String key) {
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences.Editor edit = preferences.edit();
+		edit.remove(key);
+		edit.commit();
+	}
+
 	private enum RemixUrlParsingState {
 		STARTING, TOKEN, BETWEEN
 	}

@@ -50,12 +50,19 @@ public final class ImageEditing {
 
 	private static final String TAG = ImageEditing.class.getSimpleName();
 
+	public static Bitmap createSingleColorBitmap(int x, int y, int blue) {
+		Bitmap bitmap1 = Bitmap.createBitmap(x, y, Bitmap.Config.ARGB_8888);
+		bitmap1.eraseColor(android.graphics.Color.GREEN);
+
+		return bitmap1;
+	}
+
 	public enum ResizeType {
 		STRETCH_TO_RECTANGLE, STAY_IN_RECTANGLE_WITH_SAME_ASPECT_RATIO, FILL_RECTANGLE_WITH_SAME_ASPECT_RATIO
 	}
 
 	// Suppress default constructor for noninstantiability
-	private ImageEditing() {
+	public ImageEditing() {
 		throw new AssertionError();
 	}
 

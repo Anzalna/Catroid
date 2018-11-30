@@ -50,6 +50,10 @@ public class LoopEndBrick extends BrickBaseType implements NestingBrick, Allowed
 		this.loopBeginBrick = loopBeginBrick;
 	}
 
+	public LoopEndBrick(Sprite object, LoopBeginBrick loopBeginBrick) {
+
+	}
+
 	@Override
 	public int getRequiredResources() {
 		return NO_RESOURCES;

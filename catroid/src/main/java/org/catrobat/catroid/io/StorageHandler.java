@@ -1152,4 +1152,8 @@ public final class StorageHandler {
 			throw new IOException("Directory: " + src + " could not be deleted.");
 		}
 	}
+
+	public boolean deleteProject(String projectName) {
+		return UtilFile.deleteDirectory(new File(buildProjectPath(projectName)));
+	}
 }

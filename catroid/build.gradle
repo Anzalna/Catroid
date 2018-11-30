@@ -25,9 +25,10 @@ buildscript {
     repositories {
         jcenter()
         maven { url 'https://maven.fabric.io/public' }
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.android.tools.build:gradle:3.1.4'
         classpath 'io.fabric.tools:gradle:1.21.5'
     }
 }
@@ -150,73 +151,73 @@ ext {
 }
 
 configurations {
-    compile.exclude group: 'org.apache.sanselan' //compile problem with parrot arsdk
-    compile.exclude group: 'xpp3' //compile problem with xstream
+    implementation.exclude group: 'org.apache.sanselan'
+    implementation.exclude group: 'xpp3'
     natives
 }
 
 dependencies {
-    compile 'com.parrot:arsdk:3.9.2'
+    implementation 'com.parrot:arsdk:3.9.2'
     //CAST
-    compile 'com.android.support:mediarouter-v7:22.+'
-    compile 'com.google.android.gms:play-services-cast:9.4.0'
+    implementation 'com.android.support:mediarouter-v7:22.+'
+    implementation 'com.google.android.gms:play-services-cast:9.4.0'
 
-    compile 'com.google.guava:guava:19.0'
-    compile 'com.squareup.okhttp:okhttp:2.3.0'
-    compile 'com.google.code.gson:gson:2.7'
-    compile 'com.github.johnpersano:supertoasts:2.0@aar'
-    compile 'com.github.mrengineer13:snackbar:1.2.0'
+    implementation 'com.google.guava:guava:19.0'
+    implementation 'com.squareup.okhttp:okhttp:2.3.0'
+    implementation 'com.google.code.gson:gson:2.7'
+    implementation 'com.github.johnpersano:supertoasts:2.0@aar'
+    implementation 'com.github.mrengineer13:snackbar:1.2.0'
 
-    compile 'com.koushikdutta.async:androidasync:2.+'
-    compile 'com.sothree.slidinguppanel:library:3.3.0'
-    compile 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.koushikdutta.async:androidasync:2.+'
+    implementation 'com.sothree.slidinguppanel:library:3.3.0'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 
-    compile ('com.thoughtworks.xstream:xstream:1.4.7') {
+    implementation ('com.thoughtworks.xstream:xstream:1.4.7') {
         exclude group: 'xmlpull'
     }
-    compile 'com.github.oliewa92:MidiDroid:v1.1'
+    implementation 'com.github.oliewa92:MidiDroid:v1.1'
 
     def gdxVersion = '1.6.2'
-    compile 'com.badlogicgames.gdx:gdx:' + gdxVersion
-    compile 'com.badlogicgames.gdx:gdx-backend-android:' + gdxVersion
+    implementation 'com.badlogicgames.gdx:gdx:' + gdxVersion
+    implementation 'com.badlogicgames.gdx:gdx-backend-android:' + gdxVersion
     natives 'com.badlogicgames.gdx:gdx-platform:' + gdxVersion + ':natives-x86'
     natives 'com.badlogicgames.gdx:gdx-platform:' + gdxVersion + ':natives-armeabi'
     natives 'com.badlogicgames.gdx:gdx-platform:' + gdxVersion + ':natives-armeabi-v7a'
-    compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+    implementation "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
     natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-armeabi"
     natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-armeabi-v7a"
     natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86"
 
-    compile 'com.facebook.android:facebook-android-sdk:4.14.1'
-    compile 'com.android.support:support-v4:24.1.1'
-    compile 'com.google.android.gms:play-services-auth:9.4.0'
-    compile 'com.android.support:multidex:1.0.1'
-    compile 'com.github.billthefarmer:mididriver:v1.13'
+    implementation 'com.facebook.android:facebook-android-sdk:4.14.1'
+    implementation 'com.android.support:support-v4:24.1.1'
+    implementation 'com.google.android.gms:play-services-auth:9.4.0'
+    implementation 'com.android.support:multidex:1.0.1'
+    implementation 'com.github.billthefarmer:mididriver:v1.13'
 
-    compile group: 'ar.com.hjg', name: 'pngj', version: '2.1.0'
-    compile fileTree(include: '*.jar', dir: 'src/main/libs')
-    compile fileTree(include: '*.jar', dir: 'src/main/libs-natives')
-    androidTestCompile fileTree(include: '*.jar', dir: 'src/androidTest/libs')
-    androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.2.1'
-    androidTestCompile 'com.linkedin.dexmaker:dexmaker-mockito:2.2.0'
-    androidTestCompile 'org.mockito:mockito-core:2.8.47'
+    implementation group: 'ar.com.hjg', name: 'pngj', version: '2.1.0'
+    implementation fileTree(include: '*.jar', dir: 'src/main/libs')
+    implementation fileTree(include: '*.jar', dir: 'src/main/libs-natives')
+    androidTestImplementation fileTree(include: '*.jar', dir: 'src/androidTest/libs')
+    androidTestImplementation 'com.jayway.android.robotium:robotium-solo:5.2.1'
+    androidTestImplementation 'com.linkedin.dexmaker:dexmaker-mockito:2.2.0'
+    androidTestImplementation 'org.mockito:mockito-core:2.8.47'
 
-    androidTestCompile ('com.android.support.test:runner:1.0.1') {
+    androidTestImplementation ('com.android.support.test:runner:1.0.1') {
         exclude group: 'com.android.support'
     }
-    androidTestCompile ('com.android.support.test.espresso:espresso-core:3.0.1') {
+    androidTestImplementation ('com.android.support.test.espresso:espresso-core:3.0.1') {
         exclude group: 'com.android.support'
     }
-    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:3.0.1') {
-        exclude group: 'com.android.support'
-    }
-
-    compile ('com.android.support.test.espresso:espresso-core:3.0.1') {
+    androidTestImplementation ('com.android.support.test.espresso:espresso-contrib:3.0.1') {
         exclude group: 'com.android.support'
     }
 
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:2.8.47'
+    implementation ('com.android.support.test.espresso:espresso-core:3.0.1') {
+        exclude group: 'com.android.support'
+    }
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:2.8.47'
 
     pmd(
             'net.sourceforge.pmd:pmd-core:5.8.1',
@@ -224,9 +225,14 @@ dependencies {
     )
 
     checkstyle 'com.puppycrawl.tools:checkstyle:7.6'
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
+    implementation('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
         transitive = true
     }
+    androidTestImplementation 'com.android.support:support-annotations:24.1.1'
+    androidTestImplementation 'com.android.support.test:testing-support-lib:0.1'
+    androidTestImplementation 'info.cukes:cucumber-android:1.2.0@jar'
+    androidTestImplementation 'info.cukes:cucumber-picocontainer:1.2.0'
+    androidTestImplementation 'info.cukes:cucumber-html:0.2.3'
 }
 
 def getCurrentGitBranch() {
@@ -239,12 +245,14 @@ def getCurrentGitBranch() {
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '27.0.3'
     defaultConfig {
         minSdkVersion 17
-        targetSdkVersion 22
+        targetSdkVersion 28
+        flavorDimensions "default"
         applicationId appId
-        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+
+        testInstrumentationRunner 'org.catrobat.catroid.test.cucumber.Instrumentation'
         versionCode 42
         println "VersionCode is " + versionCode
         versionName "0.9.33"

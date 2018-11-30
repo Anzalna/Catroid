@@ -781,6 +781,30 @@ public final class ProjectManager implements
 				fragmentActivity.getFragmentManager(), null);
 	}
 
+	public void deleteCurrentProject(Context context) throws IllegalArgumentException, IOException {
+		deleteProject(project.getName(), context);
+	}
+	public void deleteProject(String projectName, Context context) throws IllegalArgumentException, IOException {
+		Log.d(TAG, "deleteProject " + projectName);
+		if (StorageHandler.getInstance().projectExists(projectName)) {
+			StorageHandler.getInstance().deleteProject(projectName);
+		}
+
+		if (project != null && project.getName().equals(projectName)) {
+			Log.d(TAG, "deleteProject(): project instance set to null");
+
+			project = null;
+
+			if (context != null) {
+				SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+				String currentProjectName = sharedPreferences.getString(Constants.PREF_PROJECTNAME_KEY, "notFound");
+				if (!currentProjectName.equals("notFound")) {
+					Utils.removeFromPreferences(context, Constants.PREF_PROJECTNAME_KEY);
+				}
+			}
+		}
+	}
+
 	private class SaveProjectAsynchronousTask extends AsyncTask<Void, Void, Void> {
 
 		@Override

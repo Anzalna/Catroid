@@ -1,6 +1,6 @@
 /*
  * Catroid: An on-device visual programming system for Android devices
- * Copyright (C) 2010-2017 The Catrobat Team
+ * Copyright (C) 2010-2018 The Catrobat Team
  * (<http://developer.catrobat.org/credits>)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,50 +20,28 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.catrobat.catroid.content;
 
-import org.catrobat.catroid.content.bricks.ScriptBrick;
-import org.catrobat.catroid.content.bricks.WhenStartedBrick;
+package org.catrobat.catroid.test.cucumber;
 
-public class StartScript extends Script {
+import android.os.Bundle;
+import android.support.test.runner.MonitoringInstrumentation;
 
-	private static final long serialVersionUID = 1L;
-	private boolean isUserScript;
+import cucumber.api.android.CucumberInstrumentationCore;
 
-	public StartScript() {
-		super();
-	}
+public class Instrumentation extends MonitoringInstrumentation {
 
-	public StartScript(boolean isUserScript) {
-		this.isUserScript = isUserScript;
-	}
+    private final CucumberInstrumentationCore instrumentationCore = new CucumberInstrumentationCore(this);
 
-	public StartScript(WhenStartedBrick brick) {
-		this.brick = brick;
-	}
+    @Override
+    public void onCreate(final Bundle bundle) {
+        super.onCreate(bundle);
+        instrumentationCore.create(bundle);
+        start();
+    }
 
-	public StartScript(Sprite sprite) {
-	}
-
-	@Override
-	protected Object readResolve() {
-		super.readResolve();
-		return this;
-	}
-
-	@Override
-	public ScriptBrick getScriptBrick() {
-		if (brick == null) {
-			brick = new WhenStartedBrick(this);
-		}
-
-		return brick;
-	}
-
-	@Override
-	public Script clone() throws CloneNotSupportedException {
-		Script clone = new StartScript(isUserScript);
-		clone.getBrickList().addAll(cloneBrickList());
-		return clone;
-	}
+    @Override
+    public void onStart() {
+        waitForIdleSync();
+        instrumentationCore.start();
+    }
 }

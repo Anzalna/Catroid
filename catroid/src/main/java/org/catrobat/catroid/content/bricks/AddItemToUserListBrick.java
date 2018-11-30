@@ -36,6 +36,7 @@ import org.catrobat.catroid.common.BrickValues;
 import org.catrobat.catroid.content.Scene;
 import org.catrobat.catroid.content.Sprite;
 import org.catrobat.catroid.formulaeditor.Formula;
+import org.catrobat.catroid.formulaeditor.FormulaElement;
 import org.catrobat.catroid.formulaeditor.UserList;
 import org.catrobat.catroid.ui.adapter.DataAdapter;
 import org.catrobat.catroid.ui.adapter.UserListAdapterWrapper;
@@ -58,6 +59,10 @@ public class AddItemToUserListBrick extends UserListBrick {
 
 	public AddItemToUserListBrick(double value) {
 		initializeBrickFields(new Formula(value));
+	}
+
+	public AddItemToUserListBrick(FormulaElement elemB, UserList varA) {
+		addAllowedBrickField(BrickField.LIST_ADD_ITEM);
 	}
 
 	@Override

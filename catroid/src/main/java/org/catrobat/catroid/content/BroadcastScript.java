@@ -23,7 +23,6 @@
 package org.catrobat.catroid.content;
 
 import org.catrobat.catroid.common.MessageContainer;
-import org.catrobat.catroid.content.bricks.BroadcastReceiverBrick;
 import org.catrobat.catroid.content.bricks.ScriptBrick;
 
 public class BroadcastScript extends Script implements BroadcastMessage {
@@ -32,17 +31,11 @@ public class BroadcastScript extends Script implements BroadcastMessage {
 	protected String receivedMessage;
 
 	public BroadcastScript(String broadcastMessage) {
-		super();
-		setBroadcastMessage(broadcastMessage);
+		super(); setBroadcastMessage(broadcastMessage);
 	}
-
 	@Override
 	public ScriptBrick getScriptBrick() {
-		if (brick == null) {
-			brick = new BroadcastReceiverBrick(this);
-		}
-
-		return brick;
+		return null;
 	}
 
 	@Override

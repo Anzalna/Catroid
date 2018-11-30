@@ -64,8 +64,7 @@ public class ShowTextBrickTest {
 
 		Script script = BrickTestUtils.createProjectAndGetStartScript("showTextBrickTest1");
 		script.addBrick(new SetVariableBrick());
-		script.addBrick(new ShowTextBrick());
-
+		script.addBrick(new ShowTextBrick(0, 0));
 		baseActivityTestRule.launchActivity(null);
 	}
 

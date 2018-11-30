@@ -100,8 +100,7 @@ public class LanguageSwitchMainMenuTest {
 		assertTrue(RtlUiTestUtils.checkTextDirectionIsRtl(Locale.getDefault().getDisplayName()));
 		assertEquals(View.LAYOUT_DIRECTION_RTL, conf.getLayoutDirection());
 		String buttonContinueName = getResourcesString(R.string.main_menu_continue);
-		onView(withId(R.id.main_menu_button_continue))
-				.check(matches(withText(containsString(buttonContinueName))));
+		onView(withId(R.id.main_menu_button_continue)).check(matches(withText(containsString(buttonContinueName))));
 		onView(withId(R.id.main_menu_button_new))
 				.check(matches(withText(R.string.main_menu_new)));
 		onView(withId(R.id.main_menu_button_programs))

@@ -63,6 +63,8 @@ public class BroadcastReceiverBrick extends BrickBaseType implements ScriptBrick
 		}
 	}
 
+
+
 	@Override
 	public Brick clone() {
 		BroadcastScript broadcastScript = new BroadcastScript(getBroadcastMessage());

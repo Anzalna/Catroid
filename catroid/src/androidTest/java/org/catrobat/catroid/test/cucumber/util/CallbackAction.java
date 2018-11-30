@@ -1,6 +1,6 @@
 /*
  * Catroid: An on-device visual programming system for Android devices
- * Copyright (C) 2010-2017 The Catrobat Team
+ * Copyright (C) 2010-2015 The Catrobat Team
  * (<http://developer.catrobat.org/credits>)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,50 +20,20 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.catrobat.catroid.content;
+package org.catrobat.catroid.test.cucumber.util;
 
-import org.catrobat.catroid.content.bricks.ScriptBrick;
-import org.catrobat.catroid.content.bricks.WhenStartedBrick;
+import com.badlogic.gdx.scenes.scene2d.Action;
 
-public class StartScript extends Script {
+public final class CallbackAction extends Action {
+	private final transient CallbackBrick.BrickCallback callback;
 
-	private static final long serialVersionUID = 1L;
-	private boolean isUserScript;
-
-	public StartScript() {
-		super();
-	}
-
-	public StartScript(boolean isUserScript) {
-		this.isUserScript = isUserScript;
-	}
-
-	public StartScript(WhenStartedBrick brick) {
-		this.brick = brick;
-	}
-
-	public StartScript(Sprite sprite) {
+	public CallbackAction(CallbackBrick.BrickCallback callback) {
+		this.callback = callback;
 	}
 
 	@Override
-	protected Object readResolve() {
-		super.readResolve();
-		return this;
-	}
-
-	@Override
-	public ScriptBrick getScriptBrick() {
-		if (brick == null) {
-			brick = new WhenStartedBrick(this);
-		}
-
-		return brick;
-	}
-
-	@Override
-	public Script clone() throws CloneNotSupportedException {
-		Script clone = new StartScript(isUserScript);
-		clone.getBrickList().addAll(cloneBrickList());
-		return clone;
+	public boolean act(float delta) {
+		callback.onCallback();
+		return true;
 	}
 }

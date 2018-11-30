@@ -53,6 +53,22 @@ public class FormulaElement implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	public FormulaElement(ElementType userList, int b, Object parent) {
+	}
+
+	public FormulaElement(ElementType type, String value, FormulaElement parent, FormulaElement leftChild) {
+			this.type = type;
+			this.value = value;
+			this.parent = parent;
+			this.leftChild = leftChild;
+
+			if (leftChild != null) {
+				this.leftChild.parent = this;
+			}
+
+	}
+
+
 	public enum ElementType {
 		OPERATOR, FUNCTION, NUMBER, SENSOR, USER_VARIABLE, USER_LIST, BRACKET, STRING, COLLISION_FORMULA
 	}

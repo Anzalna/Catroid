@@ -49,6 +49,7 @@ public class BroadcastBrick extends BrickBaseType implements BroadcastMessage {
 	protected String broadcastMessage;
 	protected transient AdapterView<?> adapterView;
 
+
 	protected Object readResolve() {
 		MessageContainer.addMessage(broadcastMessage);
 		return this;

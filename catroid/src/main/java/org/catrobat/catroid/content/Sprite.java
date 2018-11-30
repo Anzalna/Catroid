@@ -838,6 +838,10 @@ public class Sprite implements Serializable, Cloneable {
 		}
 	}
 
+	public List<LookData> getLookDataList() {
+		return lookList;
+	}
+
 	public class PenConfiguration {
 		public boolean penDown = false;
 		public float penSize = BrickValues.PEN_SIZE;
