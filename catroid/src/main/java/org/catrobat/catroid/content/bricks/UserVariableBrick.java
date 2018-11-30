@@ -63,7 +63,7 @@ public abstract class UserVariableBrick extends FormulaBrick implements BrickSpi
 	}
 
 	@Override
-	public BrickBaseType clone() throws CloneNotSupportedException {
+	public Brick clone() throws CloneNotSupportedException {
 		UserVariableBrick clone = (UserVariableBrick) super.clone();
 		clone.spinner = null;
 		return clone;

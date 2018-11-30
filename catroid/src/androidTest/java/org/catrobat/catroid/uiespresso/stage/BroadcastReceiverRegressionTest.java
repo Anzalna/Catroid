@@ -88,7 +88,7 @@ public class BroadcastReceiverRegressionTest {
 		userVariable = new UserVariable(VARIABLE_NAME);
 		dataContainer.addUserVariable(userVariable);
 		sprite1 = project.getDefaultScene().getBackgroundSprite();
-		sprite1StartScript = new StartScript();
+		sprite1StartScript = new StartScript(true);
 		sprite1.addScript(sprite1StartScript);
 	}
 
@@ -175,7 +175,7 @@ public class BroadcastReceiverRegressionTest {
 
 		Sprite sprite2 = createSpriteAndAddToProject("sprite2", project);
 
-		Script script2StartScript = new StartScript();
+		Script script2StartScript = new StartScript(true);
 		sprite2.addScript(script2StartScript);
 
 		script2StartScript.addBrick(new ChangeVariableBrick(new Formula(100.0f), userVariable));

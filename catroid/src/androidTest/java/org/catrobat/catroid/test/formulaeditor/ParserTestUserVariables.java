@@ -67,7 +67,7 @@ public class ParserTestUserVariables {
 	public void setUp() {
 		Project project = new Project(InstrumentationRegistry.getTargetContext(), "testProject");
 		firstSprite = new SingleSprite("firstSprite");
-		StartScript startScript = new StartScript();
+		StartScript startScript = new StartScript(true);
 		ChangeSizeByNBrick changeBrick = new ChangeSizeByNBrick(10);
 		firstSprite.addScript(startScript);
 		startScript.addBrick(changeBrick);

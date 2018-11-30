@@ -93,7 +93,7 @@ public class BroadcastSendBrickTest {
 	private void createProject(String projectName) {
 		Project project = new Project(InstrumentationRegistry.getTargetContext(), projectName);
 		Sprite sprite = new Sprite("testSprite");
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 
 		sprite.addScript(script);
 

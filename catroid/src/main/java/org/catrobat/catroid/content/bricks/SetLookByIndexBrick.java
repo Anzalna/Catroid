@@ -25,7 +25,10 @@ package org.catrobat.catroid.content.bricks;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 import org.catrobat.catroid.ProjectManager;
 import org.catrobat.catroid.R;
@@ -77,6 +80,16 @@ public class SetLookByIndexBrick extends FormulaBrick {
 	}
 
 	@Override
+	public int getRequiredResources() {
+		return 0;
+	}
+
+	@Override
+	public View getView(Context context, int brickId, BaseAdapter adapter) {
+		return null;
+	}
+
+	@Override
 	public View getPrototypeView(Context context) {
 		View prototypeView = super.getPrototypeView(context);
 
@@ -86,6 +99,11 @@ public class SetLookByIndexBrick extends FormulaBrick {
 		}
 
 		return prototypeView;
+	}
+
+	@Override
+	public List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence) {
+		return null;
 	}
 
 	@Override

@@ -27,9 +27,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Spinner;
 
 import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 import org.catrobat.catroid.R;
 import org.catrobat.catroid.content.ActionFactory;
@@ -69,7 +71,7 @@ public class PhiroIfLogicBeginBrick extends BrickBaseType implements IfElseLogic
 	}
 
 	@Override
-	public BrickBaseType clone() throws CloneNotSupportedException {
+	public Brick clone() throws CloneNotSupportedException {
 		PhiroIfLogicBeginBrick clone = (PhiroIfLogicBeginBrick) super.clone();
 		clone.ifElseBrick = null;
 		clone.ifEndBrick = null;
@@ -85,6 +87,11 @@ public class PhiroIfLogicBeginBrick extends BrickBaseType implements IfElseLogic
 	public View getPrototypeView(Context context) {
 		super.getPrototypeView(context);
 		return getView(context);
+	}
+
+	@Override
+	public List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence) {
+		return null;
 	}
 
 	@Override
@@ -112,6 +119,16 @@ public class PhiroIfLogicBeginBrick extends BrickBaseType implements IfElseLogic
 			}
 		});
 		return view;
+	}
+
+	@Override
+	public int getRequiredResources() {
+		return 0;
+	}
+
+	@Override
+	public View getView(Context context, int brickId, BaseAdapter adapter) {
+		return null;
 	}
 
 	@Override

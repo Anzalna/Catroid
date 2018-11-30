@@ -119,7 +119,7 @@ public class ObjectVariableTest {
 		ProjectManager.getInstance().getCurrentlyEditedScene().addSprite(new SingleSprite("sprite4"));
 
 		sprite = new SingleSprite("sprite5");
-		StartScript startScript = new StartScript();
+		StartScript startScript = new StartScript(true);
 
 		SetXBrick setXBrick = new SetXBrick((int) SPRITE_X_POSITION);
 		startScript.addBrick(setXBrick);

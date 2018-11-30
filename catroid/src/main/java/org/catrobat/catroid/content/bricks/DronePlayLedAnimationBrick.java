@@ -26,8 +26,10 @@ import android.content.Context;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Spinner;
 
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.parrot.freeflight.drone.DroneProxy.ARDRONE_LED_ANIMATION;
 
 import org.catrobat.catroid.R;
@@ -67,6 +69,11 @@ public class DronePlayLedAnimationBrick extends BrickBaseType {
 	}
 
 	@Override
+	public List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence) {
+		return null;
+	}
+
+	@Override
 	public View getView(Context context) {
 		super.getView(context);
 		ArrayAdapter<CharSequence> animationAdapter = ArrayAdapter.createFromResource(context,
@@ -94,6 +101,16 @@ public class DronePlayLedAnimationBrick extends BrickBaseType {
 		animationSpinner.setSelection(ledAnimation.ordinal());
 
 		return view;
+	}
+
+	@Override
+	public int getRequiredResources() {
+		return 0;
+	}
+
+	@Override
+	public View getView(Context context, int brickId, BaseAdapter adapter) {
+		return null;
 	}
 
 	@Override

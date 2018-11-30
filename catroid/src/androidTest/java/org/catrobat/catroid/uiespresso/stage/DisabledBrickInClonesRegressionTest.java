@@ -83,7 +83,7 @@ public class DisabledBrickInClonesRegressionTest {
 		dataContainer.addUserVariable(userVariable);
 		userVariable.setValue(1D);
 
-		Script startScript = new StartScript();
+		Script startScript = new StartScript(true);
 		sprite.addScript(startScript);
 		startScript.addBrick(new CloneBrick());
 

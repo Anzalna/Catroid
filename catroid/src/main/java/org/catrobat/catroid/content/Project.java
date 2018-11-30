@@ -124,6 +124,7 @@ public class Project implements Serializable {
 		this(context, name, false);
 	}
 
+
 	public Project(SupportProject supportProject, Context context) {
 		xmlHeader = supportProject.xmlHeader;
 		settings = supportProject.settings;

@@ -25,6 +25,9 @@ package org.catrobat.catroid.physics.content.bricks;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.BaseAdapter;
+
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 import org.catrobat.catroid.ProjectManager;
 import org.catrobat.catroid.R;
@@ -60,7 +63,7 @@ public class CollisionReceiverBrick extends BrickBaseType implements ScriptBrick
 	}
 
 	@Override
-	public BrickBaseType clone() throws CloneNotSupportedException {
+	public Brick clone() throws CloneNotSupportedException {
 		CollisionReceiverBrick clone = (CollisionReceiverBrick) super.clone();
 
 		clone.collisionScript = (CollisionScript) collisionScript.clone();
@@ -78,6 +81,11 @@ public class CollisionReceiverBrick extends BrickBaseType implements ScriptBrick
 	public View getPrototypeView(Context context) {
 		super.getPrototypeView(context);
 		return getView(context);
+	}
+
+	@Override
+	public List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence) {
+		return null;
 	}
 
 	@Override
@@ -104,6 +112,16 @@ public class CollisionReceiverBrick extends BrickBaseType implements ScriptBrick
 		spinner.setSelection(collisionScript.getSpriteToCollideWithName());
 
 		return view;
+	}
+
+	@Override
+	public int getRequiredResources() {
+		return 0;
+	}
+
+	@Override
+	public View getView(Context context, int brickId, BaseAdapter adapter) {
+		return null;
 	}
 
 	@Override

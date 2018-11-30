@@ -27,10 +27,16 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.LayoutRes;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
+
 import org.catrobat.catroid.R;
+import org.catrobat.catroid.content.Sprite;
 import org.catrobat.catroid.ui.adapter.BrickAdapter;
+
+import java.util.List;
 
 public abstract class BrickBaseType implements Brick {
 
@@ -66,7 +72,7 @@ public abstract class BrickBaseType implements Brick {
 	}
 
 	@Override
-	public BrickBaseType clone() throws CloneNotSupportedException {
+	public Brick clone() throws CloneNotSupportedException {
 		BrickBaseType clone = (BrickBaseType) super.clone();
 		clone.view = null;
 		clone.checkbox = null;
@@ -117,9 +123,15 @@ public abstract class BrickBaseType implements Brick {
 		return view;
 	}
 
+	public abstract int getRequiredResources();
+
+	public abstract View getView(Context context, int brickId, BaseAdapter adapter);
+
 	@CallSuper
 	@Override
 	public View getPrototypeView(Context context) {
 		return LayoutInflater.from(context).inflate(getViewResource(), null);
 	}
+
+    public abstract List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence);
 }

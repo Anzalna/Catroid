@@ -22,6 +22,12 @@
  */
 package org.catrobat.catroid.content.bricks;
 
+import android.content.Context;
+import android.view.View;
+import android.widget.BaseAdapter;
+
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
+
 import org.catrobat.catroid.R;
 import org.catrobat.catroid.content.BroadcastScript;
 import org.catrobat.catroid.content.Script;
@@ -42,6 +48,10 @@ public class BroadcastReceiverBrick extends BroadcastMessageBrick implements Scr
 		this.broadcastScript = broadcastScript;
 	}
 
+	public BroadcastReceiverBrick(String message) {
+		super();
+	}
+
 	@Override
 	public String getBroadcastMessage() {
 		return broadcastScript.getBroadcastMessage();
@@ -58,7 +68,7 @@ public class BroadcastReceiverBrick extends BroadcastMessageBrick implements Scr
 	}
 
 	@Override
-	public BrickBaseType clone() throws CloneNotSupportedException {
+	public Brick clone() throws CloneNotSupportedException {
 		BroadcastReceiverBrick clone = (BroadcastReceiverBrick) super.clone();
 		clone.broadcastScript = (BroadcastScript) broadcastScript.clone();
 		clone.broadcastScript.setScriptBrick(clone);
@@ -68,6 +78,21 @@ public class BroadcastReceiverBrick extends BroadcastMessageBrick implements Scr
 	@Override
 	public int getViewResource() {
 		return R.layout.brick_broadcast_receive;
+	}
+
+	@Override
+	public int getRequiredResources() {
+		return 0;
+	}
+
+	@Override
+	public View getView(Context context, int brickId, BaseAdapter adapter) {
+		return null;
+	}
+
+	@Override
+	public List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence) {
+		return null;
 	}
 
 	@Override

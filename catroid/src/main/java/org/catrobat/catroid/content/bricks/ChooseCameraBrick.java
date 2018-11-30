@@ -27,7 +27,10 @@ import android.content.Context;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Spinner;
+
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 import org.catrobat.catroid.R;
 import org.catrobat.catroid.content.Sprite;
@@ -78,6 +81,16 @@ public class ChooseCameraBrick extends BrickBaseType {
 	}
 
 	@Override
+	public int getRequiredResources() {
+		return 0;
+	}
+
+	@Override
+	public View getView(Context context, int brickId, BaseAdapter adapter) {
+		return null;
+	}
+
+	@Override
 	public View getPrototypeView(Context context) {
 		View prototypeView = super.getPrototypeView(context);
 
@@ -87,6 +100,11 @@ public class ChooseCameraBrick extends BrickBaseType {
 		setVideoSpinner.setSelection(spinnerSelectionID);
 
 		return prototypeView;
+	}
+
+	@Override
+	public List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence) {
+		return null;
 	}
 
 	private ArrayAdapter<String> createArrayAdapter(Context context) {

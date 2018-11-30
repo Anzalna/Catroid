@@ -22,7 +22,12 @@
  */
 package org.catrobat.catroid.content.bricks;
 
+import android.content.Context;
+import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.BaseAdapter;
+
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 import org.catrobat.catroid.R;
 import org.catrobat.catroid.content.Sprite;
@@ -53,6 +58,21 @@ public class ThinkBubbleBrick extends FormulaBrick implements OnClickListener {
 	@Override
 	public int getViewResource() {
 		return R.layout.brick_think_bubble;
+	}
+
+	@Override
+	public int getRequiredResources() {
+		return 0;
+	}
+
+	@Override
+	public View getView(Context context, int brickId, BaseAdapter adapter) {
+		return null;
+	}
+
+	@Override
+	public List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence) {
+		return null;
 	}
 
 	@Override

@@ -51,7 +51,7 @@ public abstract class BroadcastMessageBrick extends BrickBaseType implements
 	public abstract void setBroadcastMessage(String broadcastMessage);
 
 	@Override
-	public BrickBaseType clone() throws CloneNotSupportedException {
+	public Brick clone() throws CloneNotSupportedException {
 		BroadcastMessageBrick clone = (BroadcastMessageBrick) super.clone();
 		clone.spinner = null;
 		return clone;

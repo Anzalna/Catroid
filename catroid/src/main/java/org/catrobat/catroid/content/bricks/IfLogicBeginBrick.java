@@ -24,9 +24,11 @@ package org.catrobat.catroid.content.bricks;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 import org.catrobat.catroid.R;
 import org.catrobat.catroid.content.ActionFactory;
@@ -75,7 +77,7 @@ public class IfLogicBeginBrick extends FormulaBrick implements IfElseLogicBeginB
 	}
 
 	@Override
-	public BrickBaseType clone() throws CloneNotSupportedException {
+	public Brick clone() throws CloneNotSupportedException {
 		IfLogicBeginBrick clone = (IfLogicBeginBrick) super.clone();
 		clone.ifElseBrick = null;
 		clone.ifEndBrick = null;
@@ -92,6 +94,21 @@ public class IfLogicBeginBrick extends FormulaBrick implements IfElseLogicBeginB
 		super.getView(context);
 		onSuperGetViewCalled(context);
 		return view;
+	}
+
+	@Override
+	public int getRequiredResources() {
+		return 0;
+	}
+
+	@Override
+	public View getView(Context context, int brickId, BaseAdapter adapter) {
+		return null;
+	}
+
+	@Override
+	public List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence) {
+		return null;
 	}
 
 	protected void onSuperGetViewCalled(Context context) {

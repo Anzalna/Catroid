@@ -71,7 +71,7 @@ public class ArDroneProjectCreator extends ProjectCreator {
 		TurnLeftBrick turnLeftBrick = new TurnLeftBrick(90f);
 		SetSizeToBrick setSizeBrick = new SetSizeToBrick(100.0);
 
-		Script whenProjectStartsScript = new StartScript();
+		Script whenProjectStartsScript = new StartScript(true);
 		whenProjectStartsScript.addBrick(turnLeftBrick);
 		whenProjectStartsScript.addBrick(setSizeBrick);
 
@@ -103,7 +103,7 @@ public class ArDroneProjectCreator extends ProjectCreator {
 		Sprite backgroundSprite = defaultDroneProject.getDefaultScene().getSpriteList().get(0);
 
 		backgroundSprite.getLookList().add(backgroundLookData);
-		Script backgroundStartScript = new StartScript();
+		Script backgroundStartScript = new StartScript(true);
 
 		SetLookBrick setLookBrick = new SetLookBrick();
 		setLookBrick.setLook(backgroundLookData);
@@ -247,7 +247,7 @@ public class ArDroneProjectCreator extends ProjectCreator {
 
 		whenSpriteTappedScript.addBrick(brick);
 
-		Script whenProjectStartsScript = new StartScript();
+		Script whenProjectStartsScript = new StartScript(true);
 		PlaceAtBrick placeAtBrick = new PlaceAtBrick(calculateValueRelativeToScaledBackground(xPosition),
 				calculateValueRelativeToScaledBackground(yPosition));
 		SetSizeToBrick setSizeBrick = new SetSizeToBrick(50.0);

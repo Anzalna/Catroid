@@ -26,7 +26,10 @@ import android.content.Context;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Spinner;
+
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 import org.catrobat.catroid.R;
 import org.catrobat.catroid.content.Sprite;
@@ -60,6 +63,11 @@ public class LegoEv3SetLedBrick extends BrickBaseType {
 	}
 
 	@Override
+	public List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence) {
+		return null;
+	}
+
+	@Override
 	public int getViewResource() {
 		return R.layout.brick_ev3_set_led;
 	}
@@ -87,6 +95,16 @@ public class LegoEv3SetLedBrick extends BrickBaseType {
 		});
 		spinner.setSelection(LedStatus.valueOf(ledStatus).ordinal());
 		return view;
+	}
+
+	@Override
+	public int getRequiredResources() {
+		return 0;
+	}
+
+	@Override
+	public View getView(Context context, int brickId, BaseAdapter adapter) {
+		return null;
 	}
 
 	@Override

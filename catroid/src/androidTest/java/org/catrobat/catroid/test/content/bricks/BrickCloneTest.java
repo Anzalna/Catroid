@@ -205,7 +205,7 @@ public class BrickCloneTest {
 		Project project = new Project(InstrumentationRegistry.getTargetContext(), TestUtils.DEFAULT_TEST_PROJECT_NAME);
 		ProjectManager.getInstance().setProject(project);
 		project.getDefaultScene().addSprite(sprite);
-		StartScript script = new StartScript();
+		StartScript script = new StartScript(true);
 		sprite.addScript(script);
 		project.getDefaultScene().getDataContainer().addUserVariable(sprite, new UserVariable(VARIABLE_NAME));
 		UserVariable spriteVariable = project.getDefaultScene().getDataContainer().getUserVariable(sprite, VARIABLE_NAME);

@@ -47,7 +47,7 @@ public class ForeverActionTest {
 		final int deltaY = -10;
 
 		Sprite testSprite = new SingleSprite("testSprite");
-		StartScript testScript = new StartScript();
+		StartScript testScript = new StartScript(true);
 
 		ForeverBrick foreverBrick = new ForeverBrick();
 		LoopEndBrick loopEndBrick = new LoopEndBrick(foreverBrick);

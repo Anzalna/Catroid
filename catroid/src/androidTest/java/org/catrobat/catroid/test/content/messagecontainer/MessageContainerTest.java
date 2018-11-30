@@ -106,7 +106,7 @@ public class MessageContainerTest {
 		Project project1 = new Project(InstrumentationRegistry.getTargetContext(), projectName1);
 
 		Sprite sprite1 = new SingleSprite("cat");
-		Script script1 = new StartScript();
+		Script script1 = new StartScript(true);
 		BroadcastBrick brick1 = new BroadcastBrick(broadcastMessage1);
 		script1.addBrick(brick1);
 		sprite1.addScript(script1);
@@ -121,7 +121,7 @@ public class MessageContainerTest {
 		Project project2 = new Project(InstrumentationRegistry.getTargetContext(), projectName2);
 
 		Sprite sprite2 = new SingleSprite("cat");
-		Script script2 = new StartScript();
+		Script script2 = new StartScript(true);
 		BroadcastBrick brick2 = new BroadcastBrick(broadcastMessage2);
 		script2.addBrick(brick2);
 		sprite2.addScript(script2);

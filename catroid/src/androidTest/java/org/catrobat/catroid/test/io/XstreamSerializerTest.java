@@ -129,8 +129,8 @@ public class XstreamSerializerTest {
 		Sprite secondSprite = new SingleSprite("second");
 		Sprite thirdSprite = new SingleSprite("third");
 		Sprite fourthSprite = new SingleSprite("fourth");
-		Script testScript = new StartScript();
-		Script otherScript = new StartScript();
+		Script testScript = new StartScript(true);
+		Script otherScript = new StartScript(true);
 		HideBrick hideBrick = new HideBrick();
 		ShowBrick showBrick = new ShowBrick();
 		SetSizeToBrick setSizeToBrick = new SetSizeToBrick(size);
@@ -197,8 +197,8 @@ public class XstreamSerializerTest {
 		Sprite secondSprite = new SingleSprite("second");
 		Sprite thirdSprite = new SingleSprite("third");
 		Sprite fourthSprite = new SingleSprite("fourth");
-		Script testScript = new StartScript();
-		Script otherScript = new StartScript();
+		Script testScript = new StartScript(true);
+		Script otherScript = new StartScript(true);
 		HideBrick hideBrick = new HideBrick();
 		ShowBrick showBrick = new ShowBrick();
 		SetSizeToBrick setSizeToBrick = new SetSizeToBrick(size);
@@ -365,7 +365,7 @@ public class XstreamSerializerTest {
 				DEFAULT_MOVE_TIME_IN_MILLISECONDS, DEFAULT_MOVE_POWER_IN_PERCENT);
 
 		Sprite firstSprite = new SingleSprite("first");
-		Script testScript = new StartScript();
+		Script testScript = new StartScript(true);
 		testScript.addBrick(new HideBrick());
 		testScript.addBrick(new ShowBrick());
 		testScript.addBrick(new SpeakBrick(""));
@@ -373,7 +373,7 @@ public class XstreamSerializerTest {
 		firstSprite.addScript(testScript);
 
 		Sprite secondSprite = new SingleSprite("second");
-		Script otherScript = new StartScript();
+		Script otherScript = new StartScript(true);
 		otherScript.addBrick(setSizeToBrick);
 		otherScript.addBrick(moveBrick);
 		secondSprite.addScript(otherScript);

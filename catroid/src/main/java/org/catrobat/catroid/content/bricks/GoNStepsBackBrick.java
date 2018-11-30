@@ -25,7 +25,10 @@ package org.catrobat.catroid.content.bricks;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 import org.catrobat.catroid.ProjectManager;
 import org.catrobat.catroid.R;
@@ -85,12 +88,27 @@ public class GoNStepsBackBrick extends FormulaBrick {
 	}
 
 	@Override
+	public int getRequiredResources() {
+		return 0;
+	}
+
+	@Override
+	public View getView(Context context, int brickId, BaseAdapter adapter) {
+		return null;
+	}
+
+	@Override
 	public View getPrototypeView(Context context) {
 		View prototypeView = super.getPrototypeView(context);
 		TextView times = prototypeView.findViewById(R.id.brick_go_back_layers_text_view);
 		times.setText(context.getResources()
 				.getQuantityString(R.plurals.brick_go_back_layer_plural, Utils.convertDoubleToPluralInteger(BrickValues.GO_BACK)));
 		return prototypeView;
+	}
+
+	@Override
+	public List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence) {
+		return null;
 	}
 
 	@Override

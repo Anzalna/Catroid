@@ -22,6 +22,12 @@
  */
 package org.catrobat.catroid.content.bricks;
 
+import android.content.Context;
+import android.view.View;
+import android.widget.BaseAdapter;
+
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
+
 import org.catrobat.catroid.R;
 import org.catrobat.catroid.content.Sprite;
 import org.catrobat.catroid.content.actions.ScriptSequenceAction;
@@ -42,6 +48,10 @@ public class LoopEndBrick extends BrickBaseType implements NestingBrick, Allowed
 		this.loopBeginBrick = loopBeginBrick;
 	}
 
+	public LoopEndBrick(Sprite object, LoopBeginBrick loopBeginBrick) {
+		super();
+	}
+
 	public LoopBeginBrick getLoopBeginBrick() {
 		return loopBeginBrick;
 	}
@@ -56,7 +66,22 @@ public class LoopEndBrick extends BrickBaseType implements NestingBrick, Allowed
 	}
 
 	@Override
-	public BrickBaseType clone() throws CloneNotSupportedException {
+	public int getRequiredResources() {
+		return 0;
+	}
+
+	@Override
+	public View getView(Context context, int brickId, BaseAdapter adapter) {
+		return null;
+	}
+
+	@Override
+	public List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence) {
+		return null;
+	}
+
+	@Override
+	public Brick clone() throws CloneNotSupportedException {
 		LoopEndBrick clone = (LoopEndBrick) super.clone();
 		clone.loopBeginBrick = null;
 		return clone;

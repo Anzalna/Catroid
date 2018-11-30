@@ -25,9 +25,11 @@ package org.catrobat.catroid.content.bricks;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 import org.catrobat.catroid.ProjectManager;
 import org.catrobat.catroid.R;
@@ -63,7 +65,7 @@ public class RepeatBrick extends FormulaBrick implements LoopBeginBrick {
 	}
 
 	@Override
-	public BrickBaseType clone() throws CloneNotSupportedException {
+	public Brick clone() throws CloneNotSupportedException {
 		RepeatBrick clone = (RepeatBrick) super.clone();
 		clone.loopEndBrick = null;
 		return clone;
@@ -98,12 +100,27 @@ public class RepeatBrick extends FormulaBrick implements LoopBeginBrick {
 	}
 
 	@Override
+	public int getRequiredResources() {
+		return 0;
+	}
+
+	@Override
+	public View getView(Context context, int brickId, BaseAdapter adapter) {
+		return null;
+	}
+
+	@Override
 	public View getPrototypeView(Context context) {
 		View prototypeView = super.getPrototypeView(context);
 		TextView label = prototypeView.findViewById(R.id.brick_repeat_time_text_view);
 		label.setText(context.getResources().getQuantityString(R.plurals.time_plural,
 				Utils.convertDoubleToPluralInteger(BrickValues.REPEAT)));
 		return prototypeView;
+	}
+
+	@Override
+	public List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence) {
+		return null;
 	}
 
 	@Override

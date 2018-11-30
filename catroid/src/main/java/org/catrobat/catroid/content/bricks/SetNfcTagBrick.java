@@ -25,6 +25,9 @@ package org.catrobat.catroid.content.bricks;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.BaseAdapter;
+
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 import org.catrobat.catroid.R;
 import org.catrobat.catroid.common.BrickValues;
@@ -69,6 +72,11 @@ public class SetNfcTagBrick extends FormulaBrick implements
 	}
 
 	@Override
+	public List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence) {
+		return null;
+	}
+
+	@Override
 	public View getView(Context context) {
 		super.getView(context);
 
@@ -88,6 +96,16 @@ public class SetNfcTagBrick extends FormulaBrick implements
 		spinner.setSelection(nfcTagNdefType);
 
 		return view;
+	}
+
+	@Override
+	public int getRequiredResources() {
+		return 0;
+	}
+
+	@Override
+	public View getView(Context context, int brickId, BaseAdapter adapter) {
+		return null;
 	}
 
 	@Override

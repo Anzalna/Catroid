@@ -140,7 +140,7 @@ public class FaceDetectionResourceStartedTest {
 	private void createProject() {
 		Project project = new Project(InstrumentationRegistry.getTargetContext(), "FaceDetectionResourceStartedTest");
 		Sprite sprite = new Sprite("testSprite");
-		Script startScript = new StartScript();
+		Script startScript = new StartScript(true);
 		SetSizeToBrick setSizeToBrick = new SetSizeToBrick(formula);
 		startScript.addBrick(setSizeToBrick);
 		sprite.addScript(startScript);

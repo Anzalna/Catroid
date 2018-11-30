@@ -27,7 +27,10 @@ import android.content.Context;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Spinner;
+
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 import org.catrobat.catroid.R;
 import org.catrobat.catroid.common.BrickValues;
@@ -74,12 +77,27 @@ public class StopScriptBrick extends BrickBaseType {
 	}
 
 	@Override
+	public int getRequiredResources() {
+		return 0;
+	}
+
+	@Override
+	public View getView(Context context, int brickId, BaseAdapter adapter) {
+		return null;
+	}
+
+	@Override
 	public View getPrototypeView(Context context) {
 		View prototypeView = super.getPrototypeView(context);
 		Spinner spinner = prototypeView.findViewById(R.id.brick_stop_script_spinner);
 		spinner.setAdapter(createArrayAdapter(context));
 		spinner.setSelection(spinnerSelection);
 		return prototypeView;
+	}
+
+	@Override
+	public List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence) {
+		return null;
 	}
 
 	private ArrayAdapter<String> createArrayAdapter(Context context) {

@@ -54,7 +54,7 @@ public class ScriptTest {
 
 	@Test
 	public void testAddBricks() {
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 		script.addBrick(hideBrick);
 		script.addBrick(showBrick);
 		script.addBrick(placeAtBrick);

@@ -31,12 +31,14 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
+import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 import org.catrobat.catroid.ProjectManager;
@@ -70,7 +72,7 @@ public class UserScriptDefinitionBrick extends BrickBaseType implements ScriptBr
 	private List<UserScriptDefinitionBrickElement> userScriptDefinitionBrickElements;
 
 	public UserScriptDefinitionBrick() {
-		this.script = new StartScript();
+		this.script = new StartScript(true);
 		this.userScriptDefinitionBrickElements = new ArrayList<>();
 	}
 
@@ -130,6 +132,21 @@ public class UserScriptDefinitionBrick extends BrickBaseType implements ScriptBr
 		super.getView(context);
 		onLayoutChanged();
 		return view;
+	}
+
+	@Override
+	public int getRequiredResources() {
+		return 0;
+	}
+
+	@Override
+	public View getView(Context context, int brickId, BaseAdapter adapter) {
+		return null;
+	}
+
+	@Override
+	public List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence) {
+		return null;
 	}
 
 	public void onLayoutChanged() {
@@ -292,7 +309,7 @@ public class UserScriptDefinitionBrick extends BrickBaseType implements ScriptBr
 	}
 
 	@Override
-	public BrickBaseType clone() throws CloneNotSupportedException {
+	public Brick clone() throws CloneNotSupportedException {
 		UserScriptDefinitionBrick clone = (UserScriptDefinitionBrick) super.clone();
 		clone.script = null;
 		return clone;

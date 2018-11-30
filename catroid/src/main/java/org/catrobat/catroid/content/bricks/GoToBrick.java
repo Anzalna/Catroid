@@ -26,6 +26,9 @@ package org.catrobat.catroid.content.bricks;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.BaseAdapter;
+
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 import org.catrobat.catroid.ProjectManager;
 import org.catrobat.catroid.R;
@@ -66,6 +69,11 @@ public class GoToBrick extends BrickBaseType implements BrickSpinner.OnItemSelec
 	}
 
 	@Override
+	public List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence) {
+		return null;
+	}
+
+	@Override
 	public View getView(Context context) {
 		super.getView(context);
 
@@ -88,6 +96,16 @@ public class GoToBrick extends BrickBaseType implements BrickSpinner.OnItemSelec
 			spinner.setSelection(destinationSprite);
 		}
 		return view;
+	}
+
+	@Override
+	public int getRequiredResources() {
+		return 0;
+	}
+
+	@Override
+	public View getView(Context context, int brickId, BaseAdapter adapter) {
+		return null;
 	}
 
 	@Override

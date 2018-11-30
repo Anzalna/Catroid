@@ -69,13 +69,9 @@ public class AddItemToUserListTest {
 		onBrickAtPosition(brickPosition).checkShowsText(R.string.brick_add_item_to_userlist);
 		onView(withId(R.id.brick_add_item_to_userlist_edit_text)).perform(click());
 
-		onFormulaEditor()
-				.performOpenDataFragment();
-		onDataList()
-				.performAdd("newList", FormulaEditorDataListWrapper.ItemType.LIST)
-				.performClose();
-		onFormulaEditor()
-				.performCloseAndSave();
+		onFormulaEditor().performOpenDataFragment();
+		onDataList().performAdd("newList", FormulaEditorDataListWrapper.ItemType.LIST).performClose();
+		onFormulaEditor().performCloseAndSave();
 
 		onBrickAtPosition(brickPosition).onFormulaTextField(R.id.brick_add_item_to_userlist_edit_text)
 				.performEnterNumber(42)

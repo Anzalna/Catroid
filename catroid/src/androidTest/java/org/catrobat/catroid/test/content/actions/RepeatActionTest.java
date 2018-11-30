@@ -59,7 +59,7 @@ public class RepeatActionTest {
 	@Before
 	public void setUp() throws Exception {
 		testSprite = new SingleSprite("sprite");
-		testScript = new StartScript();
+		testScript = new StartScript(true);
 	}
 
 	@Test
@@ -117,7 +117,7 @@ public class RepeatActionTest {
 	@Test
 	public void testRepeatCount() {
 		Sprite testSprite = new SingleSprite("sprite");
-		Script testScript = new StartScript();
+		Script testScript = new StartScript(true);
 
 		Formula repeatFormula = new Formula(new FormulaElement(ElementType.SENSOR, Sensors.OBJECT_Y.name(), null));
 		RepeatBrick repeatBrick = new RepeatBrick(repeatFormula);
@@ -179,7 +179,7 @@ public class RepeatActionTest {
 		Sprite testSprite = new SingleSprite("sprite");
 		RepeatBrick repeatBrick = new RepeatBrick(-1);
 
-		EventThread sequence = (EventThread) testSprite.getActionFactory().createEventThread(new StartScript());
+		EventThread sequence = (EventThread) testSprite.getActionFactory().createEventThread(new StartScript(true));
 		repeatBrick.addActionToSequence(testSprite, sequence);
 
 		RepeatAction repeatAction = (RepeatAction) sequence.getActions().get(0);

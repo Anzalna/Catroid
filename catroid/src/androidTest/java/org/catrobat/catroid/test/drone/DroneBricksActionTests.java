@@ -79,7 +79,7 @@ public class DroneBricksActionTests {
 
 		DroneServiceWrapper.getInstance().setDroneService(droneControlService);
 		sprite = new SingleSprite("droneTestSprite");
-		sequenceAction = (EventThread) ActionFactory.createEventThread(new StartScript());
+		sequenceAction = (EventThread) ActionFactory.createEventThread(new StartScript(true));
 	}
 
 	private void addActionToSequenceAndAct(BrickBaseType brick) {

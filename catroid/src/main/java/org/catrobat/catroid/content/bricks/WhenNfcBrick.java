@@ -32,8 +32,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 import org.catrobat.catroid.ProjectManager;
 import org.catrobat.catroid.R;
@@ -65,7 +68,7 @@ public class WhenNfcBrick extends BrickBaseType implements ScriptBrick {
 	}
 
 	@Override
-	public BrickBaseType clone() throws CloneNotSupportedException {
+	public Brick clone() throws CloneNotSupportedException {
 		WhenNfcBrick clone = (WhenNfcBrick) super.clone();
 		clone.whenNfcScript = (WhenNfcScript) whenNfcScript.clone();
 		clone.whenNfcScript.setScriptBrick(clone);
@@ -134,6 +137,16 @@ public class WhenNfcBrick extends BrickBaseType implements ScriptBrick {
 		return view;
 	}
 
+	@Override
+	public int getRequiredResources() {
+		return 0;
+	}
+
+	@Override
+	public View getView(Context context, int brickId, BaseAdapter adapter) {
+		return null;
+	}
+
 	private void setSpinnerSelection(Spinner spinner) {
 		if (ProjectManager.getInstance().getCurrentSprite().getNfcTagList().contains(nfcTag)) {
 			spinner.setSelection(ProjectManager.getInstance().getCurrentSprite().getNfcTagList().indexOf(nfcTag) + 2, true);
@@ -175,6 +188,11 @@ public class WhenNfcBrick extends BrickBaseType implements ScriptBrick {
 		nfcSpinner.setAdapter(nfcSpinnerAdapter);
 		setSpinnerSelection(nfcSpinner);
 		return prototypeView;
+	}
+
+	@Override
+	public List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence) {
+		return null;
 	}
 
 	private class SpinnerAdapterWrapper implements SpinnerAdapter {

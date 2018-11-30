@@ -96,7 +96,7 @@ public class FaceDetectionFormulaEditorComputeDialogTest {
 	public Project createProject(String projectName) {
 		Project project = new Project(InstrumentationRegistry.getTargetContext(), projectName);
 		Sprite sprite = new Sprite("testSprite");
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 
 		Formula formula = new Formula(new FormulaElement(FormulaElement.ElementType.SENSOR, Sensors.FACE_SIZE.name(), null));
 		script.addBrick(new NoteBrick(formula));

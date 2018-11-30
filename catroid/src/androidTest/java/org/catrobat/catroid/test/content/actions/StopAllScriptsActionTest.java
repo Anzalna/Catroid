@@ -65,8 +65,8 @@ public class StopAllScriptsActionTest {
 	public void setUp() {
 		sprite = new SingleSprite("testSprite");
 		createProjectWithSprite(sprite);
-		startScript1 = new StartScript();
-		startScript2 = new StartScript();
+		startScript1 = new StartScript(true);
+		startScript2 = new StartScript(true);
 		sprite.addScript(startScript1);
 		sprite.addScript(startScript2);
 		sprite.look.setPositionInUserInterfaceDimensionUnit(0, 0);

@@ -26,6 +26,9 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.BaseAdapter;
+
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 import org.catrobat.catroid.ProjectManager;
 import org.catrobat.catroid.R;
@@ -63,7 +66,7 @@ public class PlaySoundBrick extends BrickBaseType implements BrickSpinner.OnItem
 	}
 
 	@Override
-	public BrickBaseType clone() throws CloneNotSupportedException {
+	public Brick clone() throws CloneNotSupportedException {
 		PlaySoundBrick clone = (PlaySoundBrick) super.clone();
 		clone.spinner = null;
 		return clone;
@@ -81,6 +84,11 @@ public class PlaySoundBrick extends BrickBaseType implements BrickSpinner.OnItem
 	}
 
 	@Override
+	public List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence) {
+		return null;
+	}
+
+	@Override
 	public View getView(Context context) {
 		super.getView(context);
 		onViewCreated(view);
@@ -93,6 +101,16 @@ public class PlaySoundBrick extends BrickBaseType implements BrickSpinner.OnItem
 		spinner.setSelection(sound);
 
 		return view;
+	}
+
+	@Override
+	public int getRequiredResources() {
+		return 0;
+	}
+
+	@Override
+	public View getView(Context context, int brickId, BaseAdapter adapter) {
+		return null;
 	}
 
 	protected void onViewCreated(View view) {

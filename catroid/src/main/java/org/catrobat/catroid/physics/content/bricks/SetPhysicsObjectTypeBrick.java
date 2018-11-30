@@ -28,8 +28,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 import org.catrobat.catroid.R;
 import org.catrobat.catroid.content.Sprite;
@@ -87,6 +90,16 @@ public class SetPhysicsObjectTypeBrick extends BrickBaseType {
 		return view;
 	}
 
+	@Override
+	public int getRequiredResources() {
+		return 0;
+	}
+
+	@Override
+	public View getView(Context context, int brickId, BaseAdapter adapter) {
+		return null;
+	}
+
 	private ArrayAdapter<String> createAdapter(Context context) {
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item);
 		arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -106,6 +119,11 @@ public class SetPhysicsObjectTypeBrick extends BrickBaseType {
 		pointToSpinner.setAdapter(objectTypeSpinnerAdapter);
 		pointToSpinner.setSelection(PhysicsObject.Type.DYNAMIC.ordinal());
 		return prototypeView;
+	}
+
+	@Override
+	public List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence) {
+		return null;
 	}
 
 	@Override
