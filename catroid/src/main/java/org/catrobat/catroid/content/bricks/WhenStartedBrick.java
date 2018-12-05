@@ -37,7 +37,7 @@ public class WhenStartedBrick extends BrickBaseType implements ScriptBrick {
 	private Script script;
 
 	public WhenStartedBrick() {
-		this(new StartScript());
+		this(new StartScript(true));
 	}
 
 	public WhenStartedBrick(StartScript script) {

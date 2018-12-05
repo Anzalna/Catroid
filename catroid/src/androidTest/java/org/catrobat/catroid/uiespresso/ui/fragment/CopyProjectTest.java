@@ -108,7 +108,7 @@ public class CopyProjectTest {
 	private void createProject() throws IOException {
 		Project project = new Project(InstrumentationRegistry.getTargetContext(), toBeCopiedProjectName);
 		Sprite sprite = new SingleSprite("firstSprite");
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 		script.addBrick(new SetXBrick(new Formula(BrickValues.X_POSITION)));
 		sprite.addScript(script);
 

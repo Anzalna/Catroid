@@ -73,7 +73,7 @@ public class CloneScriptBrickTest {
 
 	@Test
 	public void testCloneWhenStartedBrick() throws CloneNotSupportedException {
-		StartScript script = new StartScript();
+		StartScript script = new StartScript(true);
 		ScriptBrick brick = script.getScriptBrick();
 		assertIsClone((ScriptBrick) brick.clone(), brick);
 	}

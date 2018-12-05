@@ -88,7 +88,7 @@ public class MessageContainerSaveStateTest {
 		Project project1 = new Project(InstrumentationRegistry.getTargetContext(), projectName1);
 
 		Sprite sprite1 = new SingleSprite("cat");
-		Script script1 = new StartScript();
+		Script script1 = new StartScript(true);
 		BroadcastBrick brick1 = new BroadcastBrick(broadcastMessage1);
 		script1.addBrick(brick1);
 		sprite1.addScript(script1);

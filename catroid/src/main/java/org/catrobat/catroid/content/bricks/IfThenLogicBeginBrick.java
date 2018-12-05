@@ -57,6 +57,10 @@ public class IfThenLogicBeginBrick extends FormulaBrick implements NestingBrick 
 		setFormulaWithBrickField(BrickField.IF_CONDITION, formula);
 	}
 
+	public IfThenLogicBeginBrick(int b, Formula formula) {
+		super();
+	}
+
 	public IfThenLogicEndBrick getIfThenEndBrick() {
 		return ifEndBrick;
 	}

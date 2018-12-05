@@ -165,7 +165,7 @@ public class CollisionFormulaConversionTest {
 		Sprite sprite2 = new Sprite(secondSprite);
 		Sprite sprite3 = new Sprite(thirdSprite);
 
-		Script firstScript = new StartScript();
+		Script firstScript = new StartScript(true);
 
 		FormulaElement element1 = new FormulaElement(FormulaElement.ElementType.COLLISION_FORMULA, firstSprite + " "
 				+ collisionTag + " " + thirdSprite, null);

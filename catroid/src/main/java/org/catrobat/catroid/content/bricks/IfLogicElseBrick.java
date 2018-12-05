@@ -41,6 +41,10 @@ public class IfLogicElseBrick extends BrickBaseType implements NestingBrick, All
 		this.ifBeginBrick = ifBeginBrick;
 	}
 
+	public IfLogicElseBrick(Sprite object, LoopEndBrick loopEndBrick) {
+		super();
+	}
+
 	public IfElseLogicBeginBrick getIfBeginBrick() {
 		return ifBeginBrick;
 	}

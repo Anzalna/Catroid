@@ -149,9 +149,10 @@ android {
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 22
+        targetSdkVersion 26
         applicationId appId
-        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+      //  testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        testInstrumentationRunner 'org.catrobat.catroid.test.cucumber.Instrumentation'
         versionCode 51
         println "VersionCode is $versionCode"
         versionName "0.9.45"
@@ -422,8 +423,11 @@ dependencies {
 
     pmd 'net.sourceforge.pmd:pmd-core:5.8.1'
     pmd 'net.sourceforge.pmd:pmd-java:5.8.1'
-
     checkstyle 'com.puppycrawl.tools:checkstyle:7.6'
+
+    androidTestImplementation 'com.jayway.android.robotium:robotium-solo:5.2.1'
+    androidTestImplementation 'info.cukes:cucumber-android:1.2.0@jar'
+    androidTestImplementation 'info.cukes:cucumber-picocontainer:1.2.0'
 }
 
 static def getGitCommitInfo() {

@@ -86,7 +86,7 @@ public class WaitUntilActionTest {
 	}
 
 	private void runScript(Formula validFormula) {
-		testScript = new StartScript();
+		testScript = new StartScript(true);
 
 		WaitUntilBrick waitUntilBrick = new WaitUntilBrick(validFormula);
 		testScript.addBrick(waitUntilBrick);

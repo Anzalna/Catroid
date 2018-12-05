@@ -87,7 +87,7 @@ public class ArduinoSettingsTest {
 		Project project = new Project(InstrumentationRegistry.getTargetContext(), projectName);
 		Sprite sprite = new SingleSprite("Arduino");
 
-		StartScript startScript = new StartScript();
+		StartScript startScript = new StartScript(true);
 		ArduinoSendPWMValueBrick arduinoArduinoSendPWMValueBrick = new ArduinoSendPWMValueBrick(3, 255);
 		startScript.addBrick(arduinoArduinoSendPWMValueBrick);
 		sprite.addScript(startScript);

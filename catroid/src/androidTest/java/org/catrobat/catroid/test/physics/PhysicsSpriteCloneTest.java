@@ -183,7 +183,7 @@ public class PhysicsSpriteCloneTest {
 
 	@Test
 	public void testSpriteClonePhysicsLookAndPhysicsObject() throws IOException {
-		StartScript startScript = new StartScript();
+		StartScript startScript = new StartScript(true);
 		Brick setPhysicsObjectTypeBrick = new SetPhysicsObjectTypeBrick(TYPE_TEST_VALUE);
 
 		startScript.addBrick(setPhysicsObjectTypeBrick);

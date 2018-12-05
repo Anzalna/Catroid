@@ -143,7 +143,7 @@ public class PhysicsProjectCreator extends ProjectCreator {
 		final float armMovingSpeed = 500.0f;
 
 		// Ball
-		StartScript startScript = new StartScript();
+		StartScript startScript = new StartScript(true);
 		startScript.addBrick(new SetGravityBrick(new Vector2(0.0f, -35.0f * backgroundImageScaleVector.y)));
 		ball.addScript(startScript);
 
@@ -295,7 +295,7 @@ public class PhysicsProjectCreator extends ProjectCreator {
 		List<LookData> looks = sprite.getLookList();
 		looks.add(lookData);
 
-		Script startScript = new StartScript();
+		Script startScript = new StartScript(true);
 
 		startScript.addBrick(new PlaceAtBrick(new Formula(position.x * backgroundImageScaleVector.x), new Formula(position.y * backgroundImageScaleVector.y)));
 
@@ -317,7 +317,7 @@ public class PhysicsProjectCreator extends ProjectCreator {
 			float friction) {
 
 		if (startScript == null) {
-			startScript = new StartScript();
+			startScript = new StartScript(true);
 		}
 
 		startScript.addBrick(new SetPhysicsObjectTypeBrick(type));

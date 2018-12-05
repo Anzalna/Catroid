@@ -172,8 +172,8 @@ public class DefaultProjectCreator extends ProjectCreator {
 			cloudSprite1.getLookList().add(cloudLookData);
 			cloudSprite2.getLookList().add(cloudLookData.clone());
 
-			Script cloudSpriteScript1 = new StartScript();
-			Script cloudSpriteScript2 = new StartScript();
+			Script cloudSpriteScript1 = new StartScript(true);
+			Script cloudSpriteScript2 = new StartScript(true);
 
 			PlaceAtBrick placeAtBrick1 = new PlaceAtBrick(0, 0);
 			PlaceAtBrick placeAtBrick2 = new PlaceAtBrick(ScreenValues.SCREEN_WIDTH, 0);
@@ -218,8 +218,8 @@ public class DefaultProjectCreator extends ProjectCreator {
 			birdSprite.getLookList().add(birdWingDownLookData);
 			birdSprite.getSoundList().add(soundInfo1);
 			birdSprite.getSoundList().add(soundInfo2);
-			Script birdStartScript = new StartScript();
-			Script birdStartScriptTwo = new StartScript();
+			Script birdStartScript = new StartScript(true);
+			Script birdStartScriptTwo = new StartScript(true);
 			ForeverBrick foreverBrickBird = new ForeverBrick();
 			ForeverBrick foreverBrickTwo = new ForeverBrick();
 			birdStartScript.addBrick(foreverBrickBird);

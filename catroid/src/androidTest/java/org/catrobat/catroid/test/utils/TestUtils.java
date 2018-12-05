@@ -68,7 +68,7 @@ public final class TestUtils {
 		project.setCatrobatLanguageVersion(catrobatLanguageVersion);
 
 		Sprite firstSprite = new SingleSprite("cat");
-		Script testScript = new StartScript();
+		Script testScript = new StartScript(true);
 		Brick testBrick = new HideBrick();
 		testScript.addBrick(testBrick);
 

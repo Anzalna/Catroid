@@ -118,7 +118,6 @@ public class IfThenElseBrickTest {
 
 		checkSetUpBrickArrangement();
 	}
-
 	public void checkSetUpBrickArrangement() {
 		onBrickAtPosition(0).checkShowsText(R.string.brick_when_started);
 		onBrickAtPosition(1).checkShowsText(R.string.brick_if_begin);
@@ -127,7 +126,6 @@ public class IfThenElseBrickTest {
 		onBrickAtPosition(4).checkShowsText(R.string.brick_set_y);
 		onBrickAtPosition(5).checkShowsText(R.string.brick_if_end);
 	}
-
 	public void createProject() {
 		ifThenElseBeginBrickPosition = 1;
 		IfLogicBeginBrick ifBrick = new IfLogicBeginBrick(condition);
@@ -140,7 +138,6 @@ public class IfThenElseBrickTest {
 		script.addBrick(elseBrick);
 		script.addBrick(new SetYBrick());
 		script.addBrick(endBrick);
-
 		ProjectManager.getInstance().checkNestingBrickReferences(true, false);
 	}
 }

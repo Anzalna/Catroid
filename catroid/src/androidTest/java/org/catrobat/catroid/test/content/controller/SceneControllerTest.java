@@ -246,7 +246,7 @@ public class SceneControllerTest {
 		assertTrue(dataContainer.addUserVariable(sprite, new UserVariable(spriteVarName)));
 		assertTrue(dataContainer.addUserList(sprite, new UserList(spriteListName)));
 
-		StartScript script = new StartScript();
+		StartScript script = new StartScript(true);
 		PlaceAtBrick placeAtBrick = new PlaceAtBrick(0, 0);
 		script.addBrick(placeAtBrick);
 		sprite.addScript(script);

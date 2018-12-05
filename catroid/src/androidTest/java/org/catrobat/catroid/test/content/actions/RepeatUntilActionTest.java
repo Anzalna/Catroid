@@ -69,7 +69,7 @@ public class RepeatUntilActionTest {
 	public void setUp() throws Exception {
 		testSprite = new SingleSprite("testSprite");
 		project = new Project(InstrumentationRegistry.getTargetContext(), "testProject");
-		testScript = new StartScript();
+		testScript = new StartScript(true);
 		testSprite.removeAllScripts();
 		ProjectManager.getInstance().setProject(project);
 		ProjectManager.getInstance().setCurrentSprite(new SingleSprite("testSprite1"));

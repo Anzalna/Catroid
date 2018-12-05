@@ -46,7 +46,7 @@ public class CommentOutTest {
 	@Before
 	public void setUp() throws Exception {
 		sprite = new Sprite("testSprite");
-		script = new StartScript();
+		script = new StartScript(true);
 		sequence = (EventThread) sprite.getActionFactory().createEventThread(Mockito.mock(Script.class));
 	}
 

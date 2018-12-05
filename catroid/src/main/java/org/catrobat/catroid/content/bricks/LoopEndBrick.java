@@ -42,6 +42,14 @@ public class LoopEndBrick extends BrickBaseType implements NestingBrick, Allowed
 		this.loopBeginBrick = loopBeginBrick;
 	}
 
+	public LoopEndBrick(Sprite object, LoopBeginBrick loopBeginBrick) {
+		super();
+	}
+
+	public LoopEndBrick(Sprite object, LoopEndBrick loopEndBrick) {
+		super();
+	}
+
 	public LoopBeginBrick getLoopBeginBrick() {
 		return loopBeginBrick;
 	}

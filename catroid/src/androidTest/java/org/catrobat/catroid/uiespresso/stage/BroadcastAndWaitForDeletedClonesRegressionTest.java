@@ -75,7 +75,7 @@ public class BroadcastAndWaitForDeletedClonesRegressionTest {
 
 		Sprite sprite = new Sprite("testSprite");
 
-		Script startScript = new StartScript();
+		Script startScript = new StartScript(true);
 		startScript.addBrick(new CloneBrick());
 		startScript.addBrick(new BroadcastWaitBrick(BROADCAST_MESSAGE_1));
 		sprite.addScript(startScript);
