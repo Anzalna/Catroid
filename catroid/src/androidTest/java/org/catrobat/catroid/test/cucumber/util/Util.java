@@ -43,24 +43,13 @@ public final class Util {
     public static Sprite addNewObjectWithLook(Context context, Project project, String name, int id) throws IOException {
         Sprite sprite = new Sprite(name);
         project.getDefaultScene().addSprite(sprite);
-/*
-        File file = FileTestUtils.saveFileToProject(
-                name, ProjectManager.getInstance().getCurrentScene().getName(), String.valueOf(id), org.catrobat.catroid.test.R.drawable.background_red, InstrumentationRegistry.getContext(),
-                FileTestUtils.FileTypes.IMAGE
-        );*/
-
         File file = ResourceImporter.createImageFileFromResourcesInDirectory(
                 InstrumentationRegistry.getContext().getResources(), org.catrobat.catroid.test.R.drawable.catroid_banzai,
                 new File(project.getDefaultScene().getDirectory(), IMAGE_DIRECTORY_NAME), "catroid_sunglasses.png", 1);
-
-
-
         LookData lookData = newLookData(name, file);
         sprite.getLookDataList().add(lookData);
-
         return sprite;
     }
-
     public static Sprite findSprite(Project project, String name) {
         for (Sprite sprite : project.getDefaultScene().getSpriteList()) {
             if (sprite.getName().equals(name)) {
@@ -70,7 +59,6 @@ public final class Util {
         fail(String.format("Sprite not found '%s'", name));
         return null;
     }
-
     public static LookData newLookData(String name, File file) {
         LookData look = new LookData();
         look.setLookName(name);

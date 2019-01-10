@@ -22,6 +22,7 @@
  */
 package org.catrobat.catroid.common;
 
+import android.os.Environment;
 import android.support.annotation.IntDef;
 
 import org.catrobat.catroid.CatroidApplication;
@@ -193,8 +194,8 @@ public final class Constants {
 	public static final String INTENT_SCRATCH_PROGRAM_DATA = "scratchProgramData";
 	public static final int INTENT_REQUEST_CODE_SPEECH = 0;
 	public static final int INTENT_REQUEST_CODE_CONVERT = 1;
-
-	// Lego
+	public static final String DEFAULT_ROOT = Environment.getExternalStorageDirectory().getAbsolutePath()	+ "/Pocket Code";
+    // Lego
 	@Retention(RetentionPolicy.SOURCE)
 	@IntDef({NXT, EV3})
 	public @interface LegoSensorType {

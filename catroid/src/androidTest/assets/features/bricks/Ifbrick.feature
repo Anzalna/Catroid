@@ -2,14 +2,13 @@
 Feature: conditional statement
 
   Correct Behavior: The program should execute with forever loop, if statement and if else statement
-                    without crashing.
+  without crashing.
 
   Background:
     Given I have a program
     And this program has an object 'Object'
 
   Scenario: If()then, Else brick is a control brick to check its Boolean condition.
-
     Given 'Object' has a start script
     And set 'score' to 10
     And if 'score' < 9 is true then..Else
@@ -23,7 +22,6 @@ Feature: conditional statement
 
 
   Scenario: If()then is a control brick to check the Boolean condition (Equal)
-
     Given 'Object' has a start script
     And set 'score' to 10
     And if 'score' = 10 is true then
@@ -34,7 +32,6 @@ Feature: conditional statement
     Then the variable 'score' should be equal 20
 
   Scenario: If()then is a control brick to check the Boolean condition (Less_Then)
-
     Given 'Object' has a start script
     And set 'score' to 2
     And forever
@@ -46,3 +43,26 @@ Feature: conditional statement
     When I start the program
     And  wait 1 seconds
     Then the variable 'score' should be equal 20
+
+  Scenario: If()
+    Given 'Object' has a start script
+    And if 'score' < 20 is true then
+    And if 1 < 20 is true then
+    And set 'testUservariable' to 42
+    And end if
+
+    When I start the program
+    Then the variable 'testUservariable' should be equal 42
+
+  Scenario: If()then
+    Given 'Object' has a start script
+    And if 1 < 2 is true then..Else
+    And if 1 < 2 is true then..Else
+    And set 'testUservariable' to 42
+    And Else
+    And end if else
+    And Else
+    And end if else
+
+    When I start the program
+    Then the variable 'testUservariable' should be equal 42
