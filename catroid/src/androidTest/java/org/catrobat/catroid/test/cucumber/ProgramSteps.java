@@ -1,5 +1,6 @@
 
 package org.catrobat.catroid.test.cucumber;
+import android.hardware.Sensor;
 import android.os.SystemClock;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
@@ -26,8 +27,10 @@ import org.catrobat.catroid.content.bricks.LoopEndBrick;
 import org.catrobat.catroid.content.bricks.SetVariableBrick;
 import org.catrobat.catroid.content.bricks.StopScriptBrick;
 import org.catrobat.catroid.content.bricks.WaitBrick;
+import org.catrobat.catroid.devices.mindstorms.nxt.sensors.NXTSensor;
 import org.catrobat.catroid.formulaeditor.Formula;
 import org.catrobat.catroid.formulaeditor.FormulaElement;
+import org.catrobat.catroid.formulaeditor.Functions;
 import org.catrobat.catroid.formulaeditor.Operators;
 import org.catrobat.catroid.formulaeditor.UserVariable;
 import org.catrobat.catroid.test.cucumber.util.CallbackBrick;
@@ -39,6 +42,8 @@ import org.junit.runner.RunWith;
 import java.io.IOException;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
+
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -49,8 +54,11 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import static org.catrobat.catroid.formulaeditor.FormulaElement.ElementType;
 import static org.catrobat.catroid.formulaeditor.FormulaElement.ElementType.NUMBER;
+import static org.catrobat.catroid.formulaeditor.FormulaElement.ElementType.SENSOR;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -79,16 +87,18 @@ public class ProgramSteps {
 	}*/
 
 	@Test
-	public void name(){
+	public void name() {
 		SystemClock.sleep(10000);
 		//onView(isRoot()).perform(CustomActions.wait(200));
 	}
+
 	@Given("^I have a program$")
-	public void I_have_a_program()  {
+	public void I_have_a_program() {
 		Project project = new Project(InstrumentationRegistry.getTargetContext(), projectName);
 		ProjectManager.getInstance().setProject(project);
 		Cucumber.put(Cucumber.KEY_PROJECT, project);
 	}
+
 	@Given("^this program has an object '(\\w+)'$")
 	public void program_has_object(String name) throws IOException {
 		int lookId = org.catrobat.catroid.R.drawable.default_project_bird_wing_down;
@@ -97,6 +107,7 @@ public class ProgramSteps {
 		Sprite sprite = Util.addNewObjectWithLook(getContext(), project, name, lookId);
 		Cucumber.put(Cucumber.KEY_CURRENT_OBJECT, sprite);
 	}
+
 	@Given("^'(\\w+)' has a start script$")
 	public void object_has_start_script(String object) {
 		programWaitLockPermits -= 1;
@@ -119,8 +130,9 @@ public class ProgramSteps {
 		sprite.addScript(script);
 		Cucumber.put(Cucumber.KEY_CURRENT_SCRIPT, script);
 	}
+
 	@And("^when program starts$")
-	public void whenProgramStarts()  {
+	public void whenProgramStarts() {
 		programWaitLockPermits -= 1;
 		Project project = ProjectManager.getInstance().getCurrentProject();
 		Sprite object = (Sprite) Cucumber.get(Cucumber.KEY_CURRENT_OBJECT);
@@ -140,15 +152,17 @@ public class ProgramSteps {
 		sprite.addScript(script);
 		Cucumber.put(Cucumber.KEY_CURRENT_SCRIPT, script);
 	}
+
 	@Given("^'(\\w+)' has a When '(\\w+)' script$")
 	public void object_has_a_when_script(String object, String message) {
 		programWaitLockPermits -= 1;
 		Project project = ProjectManager.getInstance().getCurrentProject();
 		Sprite sprite = Util.findSprite(project, object);
-		BroadcastScript script = new BroadcastScript( message);
+		BroadcastScript script = new BroadcastScript(message);
 		sprite.addScript(script);
 		Cucumber.put(Cucumber.KEY_CURRENT_SCRIPT, script);
 	}
+
 	@And("^set '(\\w+)' have set \"(.*?)\" \\+ set '(\\w+)'$")
 	public void thisScriptHasASetPlusSetI(String a, String b, String c) {
 		Sprite object = (Sprite) Cucumber.get(Cucumber.KEY_CURRENT_OBJECT);
@@ -165,6 +179,7 @@ public class ProgramSteps {
 		Brick brick = new SetVariableBrick(new Formula(elemB), varA);
 		script.addBrick(brick);
 	}
+
 	@And("^this script has a set '(\\w+)' to '(\\w+)' brick$")
 	public void script_has_set_var_to_var_brick(String a, String b) {
 		Sprite object = (Sprite) Cucumber.get(Cucumber.KEY_CURRENT_OBJECT);
@@ -176,9 +191,10 @@ public class ProgramSteps {
 		UserVariable variable = project.getDefaultScene().getDataContainer().getUserVariable(object, a);
 
 		FormulaElement elemB = new FormulaElement(ElementType.USER_VARIABLE, b, null);
-		Brick brick = new SetVariableBrick( new Formula(elemB), variable);
+		Brick brick = new SetVariableBrick(new Formula(elemB), variable);
 		script.addBrick(brick);
 	}
+
 	@And("^change '(\\w+)' by (\\d+.?\\d*)$")
 	public void script_has_change_var_by_val_brick1(String name, String value) {
 		Sprite object = (Sprite) Cucumber.get(Cucumber.KEY_CURRENT_OBJECT);
@@ -193,20 +209,23 @@ public class ProgramSteps {
 		Brick brick = new ChangeVariableBrick(new Formula(elemValue), variable);
 		script.addBrick(brick);
 	}
+
 	@And("^broadcastWait '(\\w+)'$")
 	public void script_has_broadcast_wait_brick1(String message) {
 		Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
 
-		BroadcastWaitBrick brick = new BroadcastWaitBrick( message);
+		BroadcastWaitBrick brick = new BroadcastWaitBrick(message);
 		script.addBrick(brick);
 	}
+
 	@And("^broadcast '(\\w+)'$")
 	public void script_has_broadcast_brick1(String message) {
 		Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
 
-		BroadcastBrick brick = new BroadcastBrick( message );
+		BroadcastBrick brick = new BroadcastBrick(message);
 		script.addBrick(brick);
 	}
+
 	@When("^I start the program$")
 	public void I_start_the_program() throws InterruptedException {
 		programWaitLock = new Semaphore(programWaitLockPermits);
@@ -215,12 +234,13 @@ public class ProgramSteps {
 		onView(withText(R.string.main_menu_continue)).perform(click());
 		onView(withId(R.id.button_play)).perform(click());
 
-        synchronized (programStartWaitLock) {
+		synchronized (programStartWaitLock) {
 			if (!programHasStarted) {
 				programStartWaitLock.wait(10000);
 			}
 		}
 	}
+
 	private void addScriptEndCallbacks() {
 		Project project = ProjectManager.getInstance().getCurrentProject();
 		for (Sprite sprite : project.getDefaultScene().getSpriteList()) {
@@ -234,10 +254,12 @@ public class ProgramSteps {
 			}
 		}
 	}
+
 	@And("^I wait until the program has stopped$")
 	public void wait_until_program_has_stopped() throws InterruptedException {
 		programWaitLock.tryAcquire(1, 60, TimeUnit.MILLISECONDS);
 	}
+
 	@And("^set '(\\w+)' to (\\d+.?\\d*)$")
 	public void script_has_set_var_to_val_brick1(String a, String b) {
 		Sprite object = (Sprite) Cucumber.get(Cucumber.KEY_CURRENT_OBJECT);
@@ -252,118 +274,155 @@ public class ProgramSteps {
 		Brick brick = new SetVariableBrick(new Formula(elemB), variable);
 		script.addBrick(brick);
 	}
+
 	@And("^wait (\\d+.?\\d*) seconds$")
 	public void script_has_wait_s_brick1(int seconds) {
 		Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
 		WaitBrick brick = new WaitBrick(seconds * 1000);
 		script.addBrick(brick);
 	}
-    @And("^if '(\\w+)' = (\\d+.?\\d*) is true then$")
-	public void ifVarIsTrueThen(String a, String  b)  {
-	Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
-	Formula validFormula = new Formula(1);
-	validFormula.setRoot(new FormulaElement(ElementType.OPERATOR, Operators.EQUAL.name(), null,
-			new FormulaElement(ElementType.USER_VARIABLE, a, null), new FormulaElement(ElementType.NUMBER, b, null)));
-	Brick brick  = new IfThenLogicBeginBrick(validFormula);
-	script.addBrick(brick);
-   }
-    @And("^stop this script$")
+
+	@And("^if '(\\w+)' = (\\d+.?\\d*) is true then$")
+	public void ifVarIsTrueThen(String a, String b) {
+		Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
+		Formula validFormula = new Formula(1);
+		validFormula.setRoot(new FormulaElement(ElementType.OPERATOR, Operators.EQUAL.name(), null,
+				new FormulaElement(ElementType.USER_VARIABLE, a, null), new FormulaElement(ElementType.NUMBER, b, null)));
+		Brick brick = new IfThenLogicBeginBrick(validFormula);
+		script.addBrick(brick);
+	}
+
+	@And("^stop this script$")
 	public void thisScriptHasAStopThisScriptBrick() throws Throwable {
 		Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
 		Brick brick = new StopScriptBrick();
 		script.addBrick(brick);
 	}
-    @And("^if '(\\w+)' < (\\d+.?\\d*) is true then$")
-    public void ifVarIsTrueThen1(String a, String  b)  {
-        Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
-        Formula validFormula = new Formula(1);
-        validFormula.setRoot(new FormulaElement(ElementType.OPERATOR, Operators.SMALLER_THAN.name(), null,
-                new FormulaElement(ElementType.USER_VARIABLE, a, null), new FormulaElement(ElementType.NUMBER, b, null)));
-        Brick brick  = new IfThenLogicBeginBrick(validFormula);
-        script.addBrick(brick);
-    }
-    @And("^if (\\d+) < (\\d+) is true then$")
-    public void ifVarIsTrueThennumber(String a, String  b)  {
-        Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
-        Formula validFormula = new Formula(1);
-        validFormula.setRoot(new FormulaElement(ElementType.OPERATOR, Operators.SMALLER_THAN.name(), null,
-                new FormulaElement(ElementType.NUMBER, a, null), new FormulaElement(ElementType.NUMBER, b, null)));
-        Brick brick  = new IfThenLogicBeginBrick(validFormula);
-        script.addBrick(brick);
-    }
-    @And("^forever$")
-    public void Forever1()  {
-        Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
-        Brick brick = new ForeverBrick();
-        script.addBrick(brick);
-    }
-    @And("^forever end$")
-    public void thisScriptHasAForeverEndBrick() {
-        Sprite object = (Sprite) Cucumber.get(Cucumber.KEY_CURRENT_OBJECT);
-        Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
-        LoopEndBrick loopEndBrick = (LoopEndBrick) Cucumber.get(Cucumber.KEY_LOOP_END_BRICK);
-        Brick brick = new LoopEndBrick(object, loopEndBrick);
-        script.addBrick(brick);
-    }
 
-    @And("^if '(\\w+)' < (\\d+.?\\d*) is true then..Else$")
-    public void ifVarIsTrueThen11(String a, String  b)  {
-        Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
-        Formula validFormula = new Formula(1);
-        validFormula.setRoot(new FormulaElement(ElementType.OPERATOR, Operators.SMALLER_THAN.name(), null,
-                new FormulaElement(ElementType.USER_VARIABLE, a, null), new FormulaElement(ElementType.NUMBER, b, null)));
-        IfLogicBeginBrick ifLogicBeginBrick = new IfLogicBeginBrick(validFormula);
-        script.addBrick(ifLogicBeginBrick);
-    }
-    @And("^if (\\d+) < (\\d+) is true then..Else$")
-    public void ifVarIsTrueThen1number(String a, String  b)  {
-        Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
-        Formula validFormula = new Formula(1);
-        validFormula.setRoot(new FormulaElement(ElementType.OPERATOR, Operators.SMALLER_THAN.name(), null,
-                new FormulaElement(ElementType.NUMBER, a, null), new FormulaElement(ElementType.NUMBER, b, null)));
+	@And("^if '(\\w+)' < (\\d+.?\\d*) is true then$")
+	public void ifVarIsTrueThen1(String a, String b) {
+		Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
+		Formula validFormula = new Formula(1);
+		validFormula.setRoot(new FormulaElement(ElementType.OPERATOR, Operators.SMALLER_THAN.name(), null,
+				new FormulaElement(ElementType.USER_VARIABLE, a, null), new FormulaElement(ElementType.NUMBER, b, null)));
+		Brick brick = new IfThenLogicBeginBrick(validFormula);
+		script.addBrick(brick);
+	}
 
-        IfLogicBeginBrick ifLogicBeginBrick = new IfLogicBeginBrick(validFormula);
-        script.addBrick(ifLogicBeginBrick);
-    }
-    @And("^Else$")
-    public void else1()  {
-        Sprite object = (Sprite) Cucumber.get(Cucumber.KEY_CURRENT_OBJECT);
-        Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
-        LoopEndBrick loopEndBrick = (LoopEndBrick) Cucumber.get(Cucumber.KEY_LOOP_END_BRICK);
-        IfLogicElseBrick ifLogicElseBrick = new IfLogicElseBrick(object,loopEndBrick);
-        script.addBrick(ifLogicElseBrick);
-    }
-    @And("^end if else$")
-    public void endIf1()  {
-        Sprite object = (Sprite) Cucumber.get(Cucumber.KEY_CURRENT_OBJECT);
-        Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
-        LoopEndBrick loopEndBrick = (LoopEndBrick) Cucumber.get(Cucumber.KEY_LOOP_END_BRICK);
-        IfLogicEndBrick ifLogicEndBrick = new IfLogicEndBrick(object, loopEndBrick);
-        script.addBrick(ifLogicEndBrick);
-    }
-    @And("^end if$")
-    public void endIf()  {
-        Sprite object = (Sprite) Cucumber.get(Cucumber.KEY_CURRENT_OBJECT);
-        Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
-        LoopEndBrick loopEndBrick = (LoopEndBrick) Cucumber.get(Cucumber.KEY_LOOP_END_BRICK);
-        IfThenLogicEndBrick ifThenLogicEndBrick = new IfThenLogicEndBrick(object, loopEndBrick);
-        script.addBrick(ifThenLogicEndBrick);
-    }
-    @Then("^the variable '(\\w+)' should be equal (\\d+.?\\d*)$")
-    public void var_should_equal_float(String name, double expected) {
-        Sprite object = (Sprite) Cucumber.get(Cucumber.KEY_CURRENT_OBJECT);
-        Project project = ProjectManager.getInstance().getCurrentProject();
-        UserVariable variable = project.getDefaultScene().getDataContainer().getUserVariable(object, name);
-        Assert.assertNotNull("The variable does not exist.", variable);
-        double actual = (double) variable.getValue();
-        assertThat("The variable is != the value.", actual, equalTo(expected));
-    }
-    @Then("^the '(\\w+)' should be equal to (\\d+.?\\d*)$")
-    public void theLengthOfTheStringShouldBeEqualTo(String a, double expected) throws Throwable {
-        Sprite object = (Sprite) Cucumber.get(Cucumber.KEY_CURRENT_OBJECT);
-        Project project = ProjectManager.getInstance().getCurrentProject();
-        UserVariable variable = project.getDefaultScene().getDataContainer().getUserVariable(object, a);
-        double actual = (double) variable.getValue();
-        assertThat("The variable is != the value.", actual, equalTo(expected));
-    }
+	@And("^if (\\d+) < (\\d+) is true then$")
+	public void ifVarIsTrueThennumber(String a, String b) {
+		Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
+		Formula validFormula = new Formula(1);
+		validFormula.setRoot(new FormulaElement(ElementType.OPERATOR, Operators.SMALLER_THAN.name(), null,
+				new FormulaElement(ElementType.NUMBER, a, null), new FormulaElement(ElementType.NUMBER, b, null)));
+		Brick brick = new IfThenLogicBeginBrick(validFormula);
+		script.addBrick(brick);
+	}
+
+	@And("^forever$")
+	public void Forever1() {
+		Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
+		Brick brick = new ForeverBrick();
+		script.addBrick(brick);
+	}
+
+	@And("^forever end$")
+	public void thisScriptHasAForeverEndBrick() {
+		Sprite object = (Sprite) Cucumber.get(Cucumber.KEY_CURRENT_OBJECT);
+		Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
+		LoopEndBrick loopEndBrick = (LoopEndBrick) Cucumber.get(Cucumber.KEY_LOOP_END_BRICK);
+		Brick brick = new LoopEndBrick(object, loopEndBrick);
+		script.addBrick(brick);
+	}
+
+	@And("^if '(\\w+)' < (\\d+.?\\d*) is true then..Else$")
+	public void ifVarIsTrueThen11(String a, String b) {
+		Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
+		Formula validFormula = new Formula(1);
+		validFormula.setRoot(new FormulaElement(ElementType.OPERATOR, Operators.SMALLER_THAN.name(), null,
+				new FormulaElement(ElementType.USER_VARIABLE, a, null), new FormulaElement(ElementType.NUMBER, b, null)));
+		IfLogicBeginBrick ifLogicBeginBrick = new IfLogicBeginBrick(validFormula);
+		script.addBrick(ifLogicBeginBrick);
+	}
+
+	@And("^if (\\d+) < (\\d+) is true then..Else$")
+	public void ifVarIsTrueThen1number(String a, String b) {
+		Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
+		Formula validFormula = new Formula(1);
+		validFormula.setRoot(new FormulaElement(ElementType.OPERATOR, Operators.SMALLER_THAN.name(), null,
+				new FormulaElement(ElementType.NUMBER, a, null), new FormulaElement(ElementType.NUMBER, b, null)));
+
+		IfLogicBeginBrick ifLogicBeginBrick = new IfLogicBeginBrick(validFormula);
+		script.addBrick(ifLogicBeginBrick);
+	}
+
+	@And("^Else$")
+	public void else1() {
+		Sprite object = (Sprite) Cucumber.get(Cucumber.KEY_CURRENT_OBJECT);
+		Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
+		LoopEndBrick loopEndBrick = (LoopEndBrick) Cucumber.get(Cucumber.KEY_LOOP_END_BRICK);
+		IfLogicElseBrick ifLogicElseBrick = new IfLogicElseBrick(object, loopEndBrick);
+		script.addBrick(ifLogicElseBrick);
+	}
+
+	@And("^end if else$")
+	public void endIf1() {
+		Sprite object = (Sprite) Cucumber.get(Cucumber.KEY_CURRENT_OBJECT);
+		Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
+		LoopEndBrick loopEndBrick = (LoopEndBrick) Cucumber.get(Cucumber.KEY_LOOP_END_BRICK);
+		IfLogicEndBrick ifLogicEndBrick = new IfLogicEndBrick(object, loopEndBrick);
+		script.addBrick(ifLogicEndBrick);
+	}
+	@And("^end if$")
+	public void endIf() {
+		Sprite object = (Sprite) Cucumber.get(Cucumber.KEY_CURRENT_OBJECT);
+		Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
+		LoopEndBrick loopEndBrick = (LoopEndBrick) Cucumber.get(Cucumber.KEY_LOOP_END_BRICK);
+		IfThenLogicEndBrick ifThenLogicEndBrick = new IfThenLogicEndBrick(object, loopEndBrick);
+		script.addBrick(ifThenLogicEndBrick);
+	}
+	@Then("^the variable '(\\w+)' should be equal (\\d+.?\\d*)$")
+	public void var_should_equal_float(String name, double expected) {
+		Sprite object = (Sprite) Cucumber.get(Cucumber.KEY_CURRENT_OBJECT);
+		Project project = ProjectManager.getInstance().getCurrentProject();
+		UserVariable variable = project.getDefaultScene().getDataContainer().getUserVariable(object, name);
+		Assert.assertNotNull("The variable does not exist.", variable);
+		double actual = (double) variable.getValue();
+		assertThat("The variable is != the value.", actual, equalTo(expected));
+	}
+
+	@Then("^the '(\\w+)' should be equal to (\\d+.?\\d*)$")
+	public void theLengthOfTheStringShouldBeEqualTo(String a, double expected) throws Throwable {
+		Sprite object = (Sprite) Cucumber.get(Cucumber.KEY_CURRENT_OBJECT);
+		Project project = ProjectManager.getInstance().getCurrentProject();
+		UserVariable variable = project.getDefaultScene().getDataContainer().getUserVariable(object, a);
+		double actual = (double) variable.getValue();
+		assertThat("The variable is != the value.", actual, equalTo(expected));
+	}
+
+	@And("^if \"([^\"]*)\" < (\\d+.?\\d*) is true then..Else$")
+	public void ifIsTrueThen(String a, String b) throws Throwable {
+		Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
+		Formula validFormula = new Formula(1);
+		validFormula.setRoot(new FormulaElement(ElementType.OPERATOR, Operators.SMALLER_THAN.name(), null,
+				new FormulaElement(ElementType.STRING, a, null), new FormulaElement(ElementType.NUMBER, b, null)));
+		IfLogicBeginBrick ifLogicBeginBrick = new IfLogicBeginBrick(validFormula);
+		script.addBrick(ifLogicBeginBrick);
+	}
+	@And("^if \"([^\"]*)\" is true then..Else$")
+	public void ifIsTrueThenww(String TRUE ) throws Throwable {
+		Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
+		Formula validFormula = new Formula(String.valueOf(TRUE));
+		IfLogicBeginBrick ifLogicBeginBrick = new IfLogicBeginBrick(validFormula);
+		script.addBrick(ifLogicBeginBrick);}
+
+	/*@And("^if (.*?) is true then..Else$")
+	public void ifIsTrueThenqq(String a) throws Throwable {
+		Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
+		Formula validFormula = new Formula(1);
+		validFormula.setRoot(new FormulaElement(ElementType.STRING, a, null));
+		IfLogicBeginBrick ifLogicBeginBrick = new IfLogicBeginBrick(validFormula);
+		script.addBrick(ifLogicBeginBrick);
+	}*/
+
 }

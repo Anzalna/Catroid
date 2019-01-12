@@ -44,25 +44,4 @@ Feature: conditional statement
     And  wait 1 seconds
     Then the variable 'score' should be equal 20
 
-  Scenario: If()
-    Given 'Object' has a start script
-    And if 'score' < 20 is true then
-    And if 1 < 20 is true then
-    And set 'testUservariable' to 42
-    And end if
 
-    When I start the program
-    Then the variable 'testUservariable' should be equal 42
-
-  Scenario: If()then
-    Given 'Object' has a start script
-    And if 1 < 2 is true then..Else
-    And if 1 < 2 is true then..Else
-    And set 'testUservariable' to 42
-    And Else
-    And end if else
-    And Else
-    And end if else
-
-    When I start the program
-    Then the variable 'testUservariable' should be equal 42

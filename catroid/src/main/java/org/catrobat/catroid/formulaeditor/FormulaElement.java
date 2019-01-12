@@ -54,8 +54,11 @@ public class FormulaElement implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	/*public FormulaElement(ElementType operator, Object o, FormulaElement formulaElement) {
-	}
+    public FormulaElement(ElementType sensor, String name, Object o1, Object o) {
+    }
+
+    /*public FormulaElement(ElementType operator, Object o, FormulaElement formulaElement) {
+    }
 */
 	public enum ElementType {
 		OPERATOR, FUNCTION, NUMBER, SENSOR, USER_VARIABLE, USER_LIST, BRACKET, STRING, COLLISION_FORMULA

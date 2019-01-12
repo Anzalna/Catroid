@@ -1,4 +1,4 @@
-
+@ignore
 Feature: Crash with Broadcast Scripts
 
   Correct Behavior: The program should execute without crashing.

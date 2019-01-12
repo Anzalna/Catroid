@@ -207,7 +207,6 @@ public class IfLogicActionTest {
 				userVariable);
 		Action elseAction = testSprite.getActionFactory().createSetVariableAction(testSprite,
 				new Formula(IF_FALSE_VALUE), userVariable);
-
 		Action ifLogicAction = testSprite.getActionFactory().createIfLogicAction(testSprite, null, ifAction,
 				elseAction);
 		ifLogicAction.act(1.0f);
