@@ -80,7 +80,7 @@ Feature: conditional statement
     And I wait until the program has stopped
     Then the variable 'testUservariable' should be equal 0
 
-  Scenario: testNotANumberFormula()
+  Scenario: testIfBrickwithNotANumber()
     Given 'Object' has a start script
     And if "sqrt(-1)" < 2 is true then..Else
     And set 'testUservariable' to 42
@@ -92,7 +92,7 @@ Feature: conditional statement
     And I wait until the program has stopped
     Then the variable 'testUservariable' should be equal 32
 
-  Scenario: testNotANumberFormula()
+  Scenario: testIfBrickwithValidString()
     Given 'Object' has a start script
     And if "01" < 2 is true then..Else
     And set 'testUservariable' to 42
