@@ -30,6 +30,7 @@ import cucumber.api.CucumberOptions;
 
 // Here you can configure which feature or feature-subfolder to test.
 @CucumberOptions(features = "features/bricks",
+       // plugin = { "html:/mnt/sdcard/cucumber-html-report"},
 		format = {"junit:/sdcard/cucumber/JUnitReport.xml", "json:/sdcard/cucumber/JSONReport.json",
 				"html:/sdcard/cucumber/cucumber-html-report", "html:/sdcard/cucumber/index.html",
 				"html:/sdcard/cucumber/cucumber-pretty","json:/sdcard/cucumber/cucumber.json"},
@@ -41,7 +42,6 @@ import cucumber.api.CucumberOptions;
 		//tags = {"@sanity"} The only scenario which have this type of tags will be execute
 
 public final class Cucumber {
-
 	public static final String KEY_PROJECT = "KEY_PROJECT";
 	public static final String KEY_CURRENT_OBJECT = "KEY_CURRENT_OBJECT";
 	public static final String KEY_CURRENT_SCRIPT = "KEY_CURRENT_SCRIPT";

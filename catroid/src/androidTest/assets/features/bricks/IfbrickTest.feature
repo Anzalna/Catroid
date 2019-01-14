@@ -1,7 +1,7 @@
 
 Feature: conditional statement
 
-  Correct Behavior: The program should execute with forever loop, if statement and if else statement without crashing.
+  Correct Behavior: The program should execute with if statement and if else statement without crashing.
 
   Background:
     Given I have a program
@@ -57,8 +57,7 @@ Feature: conditional statement
 
   Scenario: testBrickWithInValidStringFormula()
     Given 'Object' has a start script
-    And if "TRUE" is true then..Else
-    #And if "text" is true then..Else
+    And if "text" is true then..Else
     And set 'testUservariable' to 42
     And Else
     And set 'testUservariable' to 32
@@ -92,14 +91,3 @@ Feature: conditional statement
     And I wait until the program has stopped
     Then the variable 'testUservariable' should be equal 32
 
-  Scenario: testIfBrickwithValidString()
-    Given 'Object' has a start script
-    And if "01" < 2 is true then..Else
-    And set 'testUservariable' to 42
-    And Else
-    And set 'testUservariable' to 32
-    And end if else
-
-    When I start the program
-    And I wait until the program has stopped
-    Then the variable 'testUservariable' should be equal 42

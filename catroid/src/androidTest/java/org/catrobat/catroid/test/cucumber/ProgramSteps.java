@@ -36,10 +36,12 @@ import org.catrobat.catroid.formulaeditor.UserVariable;
 import org.catrobat.catroid.test.cucumber.util.CallbackBrick;
 import org.catrobat.catroid.test.cucumber.util.Util;
 import org.catrobat.catroid.ui.MainMenuActivity;
+import org.hamcrest.Matchers;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
@@ -56,11 +58,13 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
+import static junit.framework.TestCase.assertNotNull;
 import static org.catrobat.catroid.formulaeditor.FormulaElement.ElementType;
 import static org.catrobat.catroid.formulaeditor.FormulaElement.ElementType.NUMBER;
 import static org.catrobat.catroid.formulaeditor.FormulaElement.ElementType.SENSOR;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 
 
 // CHECKSTYLE DISABLE MethodNameCheck FOR 1000 LINES
@@ -74,17 +78,6 @@ public class ProgramSteps {
 
 	@Rule
 	public ActivityTestRule<MainMenuActivity> launchActivityRule = new ActivityTestRule<>(MainMenuActivity.class);
-	//public ActivityTestRule<ProjectActivity> launchActivityRule = new ActivityTestRule<>(ProjectActivity.class);
-
-	/*@org.junit.Before
-	public void setUp() throws Exception {
-		launchActivityRule.launchActivity(null);
-	}
-
-	@org.junit.After
-	public void tearDown() throws Exception {
-		ProjectManager.getInstance().deleteCurrentProject(null);
-	}*/
 
 	@Test
 	public void name() {
@@ -131,6 +124,7 @@ public class ProgramSteps {
 		Cucumber.put(Cucumber.KEY_CURRENT_SCRIPT, script);
 	}
 
+
 	@And("^when program starts$")
 	public void whenProgramStarts() {
 		programWaitLockPermits -= 1;
@@ -163,22 +157,9 @@ public class ProgramSteps {
 		Cucumber.put(Cucumber.KEY_CURRENT_SCRIPT, script);
 	}
 
-	@And("^set '(\\w+)' have set \"(.*?)\" \\+ set '(\\w+)'$")
-	public void thisScriptHasASetPlusSetI(String a, String b, String c) {
-		Sprite object = (Sprite) Cucumber.get(Cucumber.KEY_CURRENT_OBJECT);
-		Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
-		Project project = ProjectManager.getInstance().getCurrentProject();
 
-		UserVariable userVariable = new UserVariable(a);
-		project.getDefaultScene().getDataContainer().addUserVariable(userVariable);
-		UserVariable varA = project.getDefaultScene().getDataContainer().getUserVariable(object, a);
 
-		FormulaElement elemB = new FormulaElement(ElementType.OPERATOR, Operators.PLUS.name(), null,
-				new FormulaElement(ElementType.USER_VARIABLE, b, null), new FormulaElement(ElementType.USER_VARIABLE,
-				c, null));
-		Brick brick = new SetVariableBrick(new Formula(elemB), varA);
-		script.addBrick(brick);
-	}
+
 
 	@And("^this script has a set '(\\w+)' to '(\\w+)' brick$")
 	public void script_has_set_var_to_var_brick(String a, String b) {
@@ -225,6 +206,15 @@ public class ProgramSteps {
 		BroadcastBrick brick = new BroadcastBrick(message);
 		script.addBrick(brick);
 	}
+
+	@And("^broadcast \"(.*?)\"$")
+	public void script_has_broadcast_brick(String message) {
+		Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
+
+		BroadcastBrick brick = new BroadcastBrick(message);
+		script.addBrick(brick);
+	}
+
 
 	@When("^I start the program$")
 	public void I_start_the_program() throws InterruptedException {
@@ -274,6 +264,8 @@ public class ProgramSteps {
 		Brick brick = new SetVariableBrick(new Formula(elemB), variable);
 		script.addBrick(brick);
 	}
+
+
 
 	@And("^wait (\\d+.?\\d*) seconds$")
 	public void script_has_wait_s_brick1(int seconds) {
@@ -392,13 +384,13 @@ public class ProgramSteps {
 	}
 
 	@Then("^the '(\\w+)' should be equal to (\\d+.?\\d*)$")
-	public void theLengthOfTheStringShouldBeEqualTo(String a, double expected) throws Throwable {
-		Sprite object = (Sprite) Cucumber.get(Cucumber.KEY_CURRENT_OBJECT);
-		Project project = ProjectManager.getInstance().getCurrentProject();
-		UserVariable variable = project.getDefaultScene().getDataContainer().getUserVariable(object, a);
-		double actual = (double) variable.getValue();
-		assertThat("The variable is != the value.", actual, equalTo(expected));
-	}
+    public void theLengthOfTheStringShouldBeEqualTo(String a, double expected) throws Throwable {
+        Sprite object = (Sprite) Cucumber.get(Cucumber.KEY_CURRENT_OBJECT);
+        Project project = ProjectManager.getInstance().getCurrentProject();
+        UserVariable variable = project.getDefaultScene().getDataContainer().getUserVariable(object, a);
+        double actual = (double) variable.getValue();
+        assertThat("The variable is != the value.", actual, equalTo(expected));
+    }
 
 	@And("^if \"([^\"]*)\" < (\\d+.?\\d*) is true then..Else$")
 	public void ifIsTrueThen(String a, String b) throws Throwable {
@@ -415,14 +407,5 @@ public class ProgramSteps {
 		Formula validFormula = new Formula(String.valueOf(TRUE));
 		IfLogicBeginBrick ifLogicBeginBrick = new IfLogicBeginBrick(validFormula);
 		script.addBrick(ifLogicBeginBrick);}
-
-	/*@And("^if (.*?) is true then..Else$")
-	public void ifIsTrueThenqq(String a) throws Throwable {
-		Script script = (Script) Cucumber.get(Cucumber.KEY_CURRENT_SCRIPT);
-		Formula validFormula = new Formula(1);
-		validFormula.setRoot(new FormulaElement(ElementType.STRING, a, null));
-		IfLogicBeginBrick ifLogicBeginBrick = new IfLogicBeginBrick(validFormula);
-		script.addBrick(ifLogicBeginBrick);
-	}*/
 
 }

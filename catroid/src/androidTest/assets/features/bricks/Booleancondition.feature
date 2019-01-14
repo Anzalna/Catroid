@@ -20,7 +20,6 @@ Feature: conditional statement
     When I start the program
     Then the variable 'score' should be equal 20
 
-
   Scenario: If()then is a control brick to check the Boolean condition (Equal)
     Given 'Object' has a start script
     And set 'score' to 10

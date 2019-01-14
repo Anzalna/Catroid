@@ -150,7 +150,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 26
         applicationId appId
-      //  testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        //  testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         testInstrumentationRunner 'org.catrobat.catroid.test.cucumber.Instrumentation'
         versionCode 51
         println "VersionCode is $versionCode"
@@ -190,7 +190,7 @@ android {
         exclude 'lib/arm64-v8a/*' // exclude all arm64-v8a libs as we don't have all libs for that architecture
         exclude 'lib/x86_64/*'    // exclude all x86_64 libs as we don't have all libs for that architecture
         exclude 'lib/mips/*'      // Mips devices are deprecated
-         exclude 'lib/armeabi/*'  // aremabiv5 & v6 are deprecated
+        exclude 'lib/armeabi/*'  // aremabiv5 & v6 are deprecated
     }
 
     signingConfigs {
@@ -426,8 +426,19 @@ dependencies {
     androidTestImplementation 'com.jayway.android.robotium:robotium-solo:5.2.1'
 
     // For Cucumber
-    androidTestImplementation 'info.cukes:cucumber-android:1.2.0@jar'
-    androidTestImplementation 'info.cukes:cucumber-picocontainer:1.2.0'
+   // androidTestImplementation 'info.cukes:cucumber-android:1.2.0@jar'
+   // androidTestImplementation 'info.cukes:cucumber-picocontainer:1.2.0'
+   // androidTestImplementation 'info.cukes:cucumber-html:0.2.3'
+
+
+    androidTestCompile('info.cukes:cucumber-android:1.2.4') {
+        exclude module: 'cucumber-jvm-deps'
+    }
+    androidTestCompile('info.cukes:cucumber-picocontainer:1.2.4') {
+        exclude module: 'cucumber-jvm-deps'
+    }
+    androidTestCompile 'info.cukes:cucumber-jvm-deps:1.0.3'
+
 }
 
 static def getGitCommitInfo() {
