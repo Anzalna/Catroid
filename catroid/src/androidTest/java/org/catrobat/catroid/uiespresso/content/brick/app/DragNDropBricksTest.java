@@ -55,7 +55,7 @@ public class DragNDropBricksTest {
 	public void setUp() throws Exception {
 		int arbitraryNumber = 3;
 
-		LoopEndBrick endBrick = new LoopEndBrick();
+		LoopEndBrick endBrick = new LoopEndBrick(null);
 		RepeatBrick repeatBrick = new RepeatBrick(arbitraryNumber);
 		repeatBrick.setLoopEndBrick(endBrick);
 

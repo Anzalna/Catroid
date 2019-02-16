@@ -29,7 +29,15 @@ import org.catrobat.catroid.content.eventids.EventId;
 public class StartScript extends Script {
 
 	private static final long serialVersionUID = 1L;
+	private boolean isUserScript;
 
+	public StartScript(Sprite sprite) {
+		super();
+	}
+	public StartScript(boolean isUserScript) {
+		this.isUserScript = isUserScript;
+
+	}
 	@Override
 	public ScriptBrick getScriptBrick() {
 		if (scriptBrick == null) {

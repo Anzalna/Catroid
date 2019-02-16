@@ -70,7 +70,7 @@ public class ActionBarScriptTitleAfterExitingFormulaEditorTwoScenesProjectTest {
 		project.addScene(sceneTwo);
 
 		Sprite sprite = new Sprite("testSprite");
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 		script.addBrick(new ChangeSizeByNBrick(0));
 
 		sprite.addScript(script);

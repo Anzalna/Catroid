@@ -81,7 +81,7 @@ public class JumpingSumoProjectCreator extends ProjectCreator {
 
 		SetSizeToBrick setSizeBrick = new SetSizeToBrick(60.0);
 
-		Script whenProjectStartsScript = new StartScript();
+		Script whenProjectStartsScript = new StartScript(true);
 		whenProjectStartsScript.addBrick(setSizeBrick);
 
 		Script whenSpriteTappedScript = new WhenScript();
@@ -101,7 +101,7 @@ public class JumpingSumoProjectCreator extends ProjectCreator {
 		Sprite backgroundSprite = defaultJumpingSumoProject.getDefaultScene().getSpriteList().get(0);
 
 		backgroundSprite.getLookList().add(backgroundLookData);
-		Script backgroundStartScript = new StartScript();
+		Script backgroundStartScript = new StartScript(true);
 
 		SetLookBrick setLookBrick = new SetLookBrick();
 		setLookBrick.setLook(backgroundLookData);
@@ -248,7 +248,7 @@ public class JumpingSumoProjectCreator extends ProjectCreator {
 
 		whenSpriteTappedScript.addBrick(brick);
 
-		Script whenProjectStartsScript = new StartScript();
+		Script whenProjectStartsScript = new StartScript(true);
 		PlaceAtBrick placeAtBrick = new PlaceAtBrick(calculateValueRelativeToScaledBackground(xPosition),
 				calculateValueRelativeToScaledBackground(yPosition));
 		SetSizeToBrick setSizeBrick = new SetSizeToBrick(40.0);

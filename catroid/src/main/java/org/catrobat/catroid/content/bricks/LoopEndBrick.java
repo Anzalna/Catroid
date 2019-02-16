@@ -35,7 +35,12 @@ public class LoopEndBrick extends BrickBaseType implements ControlStructureBrick
 	private static final long serialVersionUID = 1L;
 	private transient LoopBeginBrick loopBeginBrick;
 
-	public LoopEndBrick() {
+	public LoopEndBrick(Sprite object, LoopBeginBrick loopBeginBrick) {
+		super();
+	}
+
+	public LoopEndBrick(Sprite object, LoopEndBrick loopEndBrick) {
+		super();
 	}
 
 	public LoopEndBrick(LoopBeginBrick loopBeginBrick) {

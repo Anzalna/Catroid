@@ -84,7 +84,7 @@ public final class UiTestUtils {
 	public static Project createEmptyProject(String projectName) {
 		Project project = new Project(InstrumentationRegistry.getTargetContext(), projectName);
 		Sprite sprite = new Sprite("testSprite");
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 		sprite.addScript(script);
 		project.getDefaultScene().addSprite(sprite);
 		ProjectManager.getInstance().setCurrentProject(project);

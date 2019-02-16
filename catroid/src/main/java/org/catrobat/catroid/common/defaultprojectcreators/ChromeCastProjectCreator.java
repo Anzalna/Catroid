@@ -182,8 +182,8 @@ public class ChromeCastProjectCreator extends ProjectCreator {
 			cloudSprite1.getLookList().add(cloudLookData);
 			cloudSprite2.getLookList().add(cloudLookData.clone());
 
-			Script cloudSpriteScript1 = new StartScript();
-			Script cloudSpriteScript2 = new StartScript();
+			Script cloudSpriteScript1 = new StartScript(true);
+			Script cloudSpriteScript2 = new StartScript(true);
 
 			PlaceAtBrick placeAtBrick1 = new PlaceAtBrick(0, 0);
 			PlaceAtBrick placeAtBrick2 = new PlaceAtBrick(ScreenValues.CAST_SCREEN_WIDTH, 0);
@@ -242,7 +242,7 @@ public class ChromeCastProjectCreator extends ProjectCreator {
 			FormulaElement birdX = new FormulaElement(FormulaElement.ElementType.SENSOR, Sensors.OBJECT_X.name(), null);
 			FormulaElement birdY = new FormulaElement(FormulaElement.ElementType.SENSOR, Sensors.OBJECT_Y.name(), null);
 
-			Script birdScriptBroadcast = new StartScript();
+			Script birdScriptBroadcast = new StartScript(true);
 
 			ForeverBrick foreverBrickBroadcast = new ForeverBrick();
 			birdScriptBroadcast.addBrick(foreverBrickBroadcast);

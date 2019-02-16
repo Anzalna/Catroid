@@ -49,6 +49,7 @@ import org.catrobat.catroid.content.bricks.UserBrick;
 import org.catrobat.catroid.content.bricks.UserScriptDefinitionBrick;
 import org.catrobat.catroid.content.bricks.UserVariableBrick;
 import org.catrobat.catroid.content.bricks.WhenConditionBrick;
+import org.catrobat.catroid.content.bricks.brickspinner.BrickSpinner;
 import org.catrobat.catroid.content.eventids.EventId;
 import org.catrobat.catroid.formulaeditor.Formula;
 import org.catrobat.catroid.formulaeditor.UserVariable;
@@ -602,7 +603,11 @@ public class Sprite implements Cloneable, Nameable, Serializable {
 		}
 	}
 
-	public class PenConfiguration {
+	public List<LookData> getLookDataList() {
+		return lookList;
+	}
+
+    public class PenConfiguration {
 		public boolean penDown = false;
 		public double penSize = BrickValues.PEN_SIZE;
 		public Color penColor = BrickValues.PEN_COLOR;

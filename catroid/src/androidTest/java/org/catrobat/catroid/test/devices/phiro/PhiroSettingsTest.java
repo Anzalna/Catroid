@@ -89,7 +89,7 @@ public class PhiroSettingsTest {
 	private void createProjectPhiro() throws InterruptedException {
 		Project projectPhiro = new Project(InstrumentationRegistry.getTargetContext(), projectName);
 		Sprite sprite = new SingleSprite("Phiro");
-		StartScript startScript = new StartScript();
+		StartScript startScript = new StartScript(true);
 		SetSizeToBrick setSizeToBrick = new SetSizeToBrick(new Formula(new FormulaElement(FormulaElement.ElementType.SENSOR,
 				Sensors.PHIRO_BOTTOM_LEFT.name(), null)));
 		startScript.addBrick(setSizeToBrick);

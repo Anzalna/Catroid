@@ -89,7 +89,7 @@ public class WhenBackgroundChangesScriptTest {
 	private void initScripts() {
 		whenBgChangesScript = new WhenBackgroundChangesScript();
 		whenBgChangesScript.setLook(bg2);
-		startScript = new StartScript();
+		startScript = new StartScript(true);
 		sprite.addScript(startScript);
 		sprite.addScript(whenBgChangesScript);
 	}

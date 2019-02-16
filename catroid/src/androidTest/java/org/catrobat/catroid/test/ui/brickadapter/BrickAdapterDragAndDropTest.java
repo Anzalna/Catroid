@@ -71,7 +71,7 @@ public class BrickAdapterDragAndDropTest {
 	public void setUp() {
 		sprite = new Sprite("Test");
 
-		StartScript startScript = new StartScript();
+		StartScript startScript = new StartScript(true);
 
 		IfElseLogicBeginBrick ifBeginBrick = new IfLogicBeginBrick();
 		IfLogicElseBrick ifElseBrick = new IfLogicElseBrick(ifBeginBrick);

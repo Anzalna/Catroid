@@ -95,7 +95,7 @@ public class SayForBubbleBrickStageTest {
 		script.addBrick(new SayForBubbleBrick(sayString, duration));
 		lastBrickInScript = ScriptEvaluationGateBrick.appendToScript(script);
 
-		Script whenStarted = new StartScript();
+		Script whenStarted = new StartScript(true);
 		firstBrickInScript = ScriptEvaluationGateBrick.appendToScript(whenStarted);
 		sprite.addScript(whenStarted);
 	}

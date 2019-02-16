@@ -89,12 +89,12 @@ public class FormulaEditorDataListAdapterArraysValueTest {
 
 		Sprite firstSprite = new SingleSprite("firstSprite");
 
-		Script firstScript = new StartScript();
+		Script firstScript = new StartScript(true);
 		firstScript.addBrick(new SetXBrick(new Formula(BrickValues.X_POSITION)));
 		firstScript.addBrick(new SetXBrick(new Formula(BrickValues.X_POSITION)));
 		firstSprite.addScript(firstScript);
 
-		Script secondScript = new StartScript();
+		Script secondScript = new StartScript(true);
 		secondScript.addBrick(new SetXBrick(new Formula(BrickValues.X_POSITION)));
 		secondScript.addBrick(new SetXBrick(new Formula(BrickValues.X_POSITION)));
 		secondScript.addBrick(new SetXBrick(new Formula(BrickValues.X_POSITION)));

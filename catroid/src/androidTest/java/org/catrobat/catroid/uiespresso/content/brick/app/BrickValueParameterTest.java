@@ -1170,7 +1170,7 @@ public class BrickValueParameterTest {
 		project.getDefaultScene().addSprite(spriteOne);
 
 		Sprite spriteTwo = new Sprite(nameSpriteTwo);
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 		spriteTwo.addScript(script);
 
 		project.getDefaultScene().addSprite(spriteTwo);

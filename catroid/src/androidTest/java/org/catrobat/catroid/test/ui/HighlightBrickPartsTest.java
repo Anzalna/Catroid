@@ -105,14 +105,14 @@ public class HighlightBrickPartsTest {
 
 		Sprite sprite = new SingleSprite("sprite");
 		project.getDefaultScene().addSprite(sprite);
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 		script.addBrick(new ForeverBrick());
 		script.addBrick(new IfLogicBeginBrick());
 		script.addBrick(new IfThenLogicBeginBrick());
 		script.addBrick(new IfThenLogicEndBrick(null));
 		script.addBrick(new IfLogicElseBrick(null));
-		script.addBrick(new IfLogicEndBrick(null, null));
-		script.addBrick(new LoopEndBrick());
+		script.addBrick(new IfLogicEndBrick((Sprite) null, null));
+		script.addBrick(new LoopEndBrick(null));
 		sprite.addScript(script);
 
 		ProjectManager.getInstance().setCurrentProject(project);

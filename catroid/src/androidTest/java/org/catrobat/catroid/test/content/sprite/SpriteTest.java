@@ -89,8 +89,8 @@ public class SpriteTest {
 	@Test
 	public void testAddScript() {
 		Sprite sprite = new SingleSprite("new SingleSprite");
-		Script firstScript = new StartScript();
-		Script secondScript = new StartScript();
+		Script firstScript = new StartScript(true);
+		Script secondScript = new StartScript(true);
 		sprite.addScript(firstScript);
 		assertEquals(1, sprite.getNumberOfScripts());
 
@@ -107,8 +107,8 @@ public class SpriteTest {
 	@Test
 	public void testGetScript() {
 		Sprite sprite = new SingleSprite("new SingleSprite");
-		Script firstScript = new StartScript();
-		Script secondScript = new StartScript();
+		Script firstScript = new StartScript(true);
+		Script secondScript = new StartScript(true);
 		sprite.addScript(firstScript);
 		sprite.addScript(secondScript);
 		assertEquals(firstScript, sprite.getScript(0));
@@ -118,8 +118,8 @@ public class SpriteTest {
 	@Test
 	public void testRemoveAllScripts() {
 		Sprite sprite = new SingleSprite("new SingleSprite");
-		Script firstScript = new StartScript();
-		Script secondScript = new StartScript();
+		Script firstScript = new StartScript(true);
+		Script secondScript = new StartScript(true);
 		sprite.addScript(firstScript);
 		sprite.addScript(secondScript);
 
@@ -131,8 +131,8 @@ public class SpriteTest {
 	@Test
 	public void testRemoveScript() {
 		Sprite sprite = new SingleSprite("new SingleSprite");
-		Script firstScript = new StartScript();
-		Script secondScript = new StartScript();
+		Script firstScript = new StartScript(true);
+		Script secondScript = new StartScript(true);
 		sprite.addScript(firstScript);
 		sprite.addScript(secondScript);
 
@@ -145,8 +145,8 @@ public class SpriteTest {
 	@Test
 	public void testGetScriptIndex() {
 		Sprite sprite = new SingleSprite("new SingleSprite");
-		Script firstScript = new StartScript();
-		Script secondScript = new StartScript();
+		Script firstScript = new StartScript(true);
+		Script secondScript = new StartScript(true);
 		sprite.addScript(firstScript);
 		sprite.addScript(secondScript);
 		assertEquals(0, sprite.getScriptIndex(firstScript));
@@ -155,7 +155,7 @@ public class SpriteTest {
 
 	@Test
 	public void testSpriteCloneWithLocalVariable() throws IOException {
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 		Brick brick = new ChangeBrightnessByNBrick(new Formula(new FormulaElement(ElementType.USER_VARIABLE,
 				LOCAL_VARIABLE_NAME, null)));
 
@@ -183,7 +183,7 @@ public class SpriteTest {
 	public void testUserVariableVisibilityOfLocalVariablesInDifferentScenes() {
 		String variableName = "sceneTestVariable";
 
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 		Brick firstBrick = new ChangeBrightnessByNBrick(0);
 		script.addBrick(firstBrick);
 		sprite.addScript(script);
@@ -191,7 +191,7 @@ public class SpriteTest {
 		Scene secondScene = new Scene("scene 2", project);
 		secondScene.addSprite(new Sprite("Background"));
 		Sprite sprite2 = new SingleSprite("testSprite2");
-		Script secondScript = new StartScript();
+		Script secondScript = new StartScript(true);
 		Brick textBrick = new ShowTextBrick(10, 10);
 		secondScript.addBrick(textBrick);
 		sprite2.addScript(secondScript);
@@ -201,7 +201,7 @@ public class SpriteTest {
 		userVariable.setVisible(false);
 		ProjectManager.getInstance().setCurrentlyPlayingScene(secondScene);
 
-		EventThread thread = (EventThread) ActionFactory.createEventThread(new StartScript());
+		EventThread thread = (EventThread) ActionFactory.createEventThread(new StartScript(true));
 		thread.addAction(sprite2.getActionFactory().createShowVariableAction(sprite2, new Formula(10),
 				new Formula(10), userVariable));
 		secondScript.run(sprite2, thread);

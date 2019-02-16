@@ -69,7 +69,7 @@ public class ParserTestUserLists {
 		Project project = new Project(InstrumentationRegistry.getTargetContext(), "testProject");
 		sprite = new SingleSprite("sprite");
 
-		StartScript startScript = new StartScript();
+		StartScript startScript = new StartScript(true);
 		ChangeSizeByNBrick changeBrick = new ChangeSizeByNBrick(10);
 		sprite.addScript(startScript);
 		startScript.addBrick(changeBrick);

@@ -72,7 +72,7 @@ public class SayBubbleBrickStageTest {
 
 		Project project = new Project(InstrumentationRegistry.getTargetContext(), projectName);
 		sprite = new Sprite("testSprite");
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 		script.addBrick(new SayBubbleBrick(sayString));
 		sprite.addScript(script);
 		project.getDefaultScene().addSprite(sprite);

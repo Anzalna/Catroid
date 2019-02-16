@@ -90,7 +90,7 @@ public class StartStageTouchTest {
 		screenIsTouchedUserVariable = new UserVariable("ScreenTouched");
 		project.getProjectVariables().add(screenIsTouchedUserVariable);
 
-		Script background1StartScript = new StartScript();
+		Script background1StartScript = new StartScript(true);
 		background1StartScript.addBrick(new WaitUntilBrick(createFormulaWithSensor(Sensors.FINGER_TOUCHED)));
 		background1StartScript.addBrick(new SceneStartBrick(scene2Name));
 		Scene scene1 = project.getDefaultScene();
@@ -98,7 +98,7 @@ public class StartStageTouchTest {
 
 		Scene scene2 = new Scene(scene2Name, project);
 		scene2.addSprite(new Sprite("Background"));
-		Script background2StartScript = new StartScript();
+		Script background2StartScript = new StartScript(true);
 		ForeverBrick foreverBrick = new ForeverBrick();
 		background2StartScript.addBrick(foreverBrick);
 		background2StartScript.addBrick(new SetVariableBrick(createFormulaWithSensor(Sensors.FINGER_TOUCHED),

@@ -82,7 +82,7 @@ public class DisabledBrickInClonesRegressionTest {
 		userVariable = new UserVariable(VARIABLE_NAME);
 		dataContainer.addUserVariable(userVariable);
 
-		Script startScript = new StartScript();
+		Script startScript = new StartScript(true);
 		sprite.addScript(startScript);
 		Brick setVariableInitial = new SetVariableBrick(new Formula(1D), userVariable);
 		startScript.addBrick(setVariableInitial);

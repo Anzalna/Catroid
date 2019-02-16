@@ -428,7 +428,7 @@ public class ScriptFragment extends ListFragment implements
 			if (brick instanceof ScriptBrick) {
 				sprite.addScript(((ScriptBrick) brick).getScript());
 			} else {
-				Script script = new StartScript();
+				Script script = new StartScript(true);
 				script.addBricks(new ArrayList<Brick>(bricksToAdd));
 				sprite.addScript(script);
 			}

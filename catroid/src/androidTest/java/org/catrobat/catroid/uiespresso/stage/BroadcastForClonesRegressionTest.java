@@ -102,7 +102,7 @@ public class BroadcastForClonesRegressionTest {
 
 		Sprite sprite = new Sprite("testSprite");
 
-		Script startScript = new StartScript();
+		Script startScript = new StartScript(true);
 		startScript.addBrick(new CloneBrick());
 		startScript.addBrick(new BroadcastBrick(BROADCAST_MESSAGE_1));
 		sprite.addScript(startScript);

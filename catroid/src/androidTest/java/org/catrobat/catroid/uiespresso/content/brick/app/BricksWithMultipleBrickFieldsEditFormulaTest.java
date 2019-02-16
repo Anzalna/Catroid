@@ -146,7 +146,7 @@ public class BricksWithMultipleBrickFieldsEditFormulaTest {
 	private void createProject(String projectName) {
 		Project project = new Project(InstrumentationRegistry.getTargetContext(), projectName);
 		Sprite sprite1 = new Sprite("testSprite");
-		Script sprite1StartScript = new StartScript();
+		Script sprite1StartScript = new StartScript(true);
 		sprite1.addScript(sprite1StartScript);
 
 		project.getDefaultScene().addSprite(sprite1);

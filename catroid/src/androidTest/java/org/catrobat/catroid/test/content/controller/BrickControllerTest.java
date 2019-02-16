@@ -26,6 +26,7 @@ package org.catrobat.catroid.test.content.controller;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.catrobat.catroid.content.Script;
+import org.catrobat.catroid.content.Sprite;
 import org.catrobat.catroid.content.StartScript;
 import org.catrobat.catroid.content.bricks.Brick;
 import org.catrobat.catroid.content.bricks.ControlStructureBrick;
@@ -76,7 +77,7 @@ public class BrickControllerTest {
 
 	@Test
 	public void testSettingIfElseBrickReferencesInCorrectScript() {
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 
 		script.addBrick(new SetXBrick());
 		IfLogicBeginBrick outerBeginBrick = new IfLogicBeginBrick();
@@ -92,10 +93,10 @@ public class BrickControllerTest {
 		IfLogicElseBrick innerElseBrick = new IfLogicElseBrick(null);
 		script.addBrick(innerElseBrick);
 		script.addBrick(new SetXBrick());
-		IfLogicEndBrick innerEndBrick = new IfLogicEndBrick(null, null);
+		IfLogicEndBrick innerEndBrick = new IfLogicEndBrick((Sprite) null, null);
 		script.addBrick(innerEndBrick);
 
-		IfLogicEndBrick outerEndBrick = new IfLogicEndBrick(null, null);
+		IfLogicEndBrick outerEndBrick = new IfLogicEndBrick((Sprite) null, null);
 		script.addBrick(outerEndBrick);
 
 		new BrickController().setControlBrickReferences(script.getBrickList());
@@ -118,7 +119,7 @@ public class BrickControllerTest {
 
 	@Test
 	public void testSettingIfElseBrickReferencesInScriptMissingBeginBrick() {
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 
 		script.addBrick(new SetXBrick());
 		script.addBrick(new SetXBrick());
@@ -132,10 +133,10 @@ public class BrickControllerTest {
 		IfLogicElseBrick innerElseBrick = new IfLogicElseBrick(null);
 		script.addBrick(innerElseBrick);
 		script.addBrick(new SetXBrick());
-		IfLogicEndBrick innerEndBrick = new IfLogicEndBrick(null, null);
+		IfLogicEndBrick innerEndBrick = new IfLogicEndBrick((Sprite) null, null);
 		script.addBrick(innerEndBrick);
 
-		IfLogicEndBrick outerEndBrick = new IfLogicEndBrick(null, null);
+		IfLogicEndBrick outerEndBrick = new IfLogicEndBrick((Sprite) null, null);
 		script.addBrick(outerEndBrick);
 
 		new BrickController().setControlBrickReferences(script.getBrickList());
@@ -154,7 +155,7 @@ public class BrickControllerTest {
 
 	@Test
 	public void testSettingIfElseBrickReferencesInScriptMissingNestedBeginBrick() {
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 
 		script.addBrick(new SetXBrick());
 		IfLogicBeginBrick outerBeginBrick = new IfLogicBeginBrick();
@@ -168,10 +169,10 @@ public class BrickControllerTest {
 		IfLogicElseBrick innerElseBrick = new IfLogicElseBrick(null);
 		script.addBrick(innerElseBrick);
 		script.addBrick(new SetXBrick());
-		IfLogicEndBrick innerEndBrick = new IfLogicEndBrick(null, null);
+		IfLogicEndBrick innerEndBrick = new IfLogicEndBrick((Sprite) null, null);
 		script.addBrick(innerEndBrick);
 
-		IfLogicEndBrick outerEndBrick = new IfLogicEndBrick(null, null);
+		IfLogicEndBrick outerEndBrick = new IfLogicEndBrick((Sprite) null, null);
 		script.addBrick(outerEndBrick);
 
 		new BrickController().setControlBrickReferences(script.getBrickList());
@@ -190,7 +191,7 @@ public class BrickControllerTest {
 
 	@Test
 	public void testSettingIfElseBrickReferencesInScriptMissingElseBrick() {
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 
 		script.addBrick(new SetXBrick());
 		IfLogicBeginBrick outerBeginBrick = new IfLogicBeginBrick();
@@ -204,10 +205,10 @@ public class BrickControllerTest {
 		script.addBrick(innerBeginBrick);
 		script.addBrick(new SetXBrick());
 		script.addBrick(new SetXBrick());
-		IfLogicEndBrick innerEndBrick = new IfLogicEndBrick(null, null);
+		IfLogicEndBrick innerEndBrick = new IfLogicEndBrick((Sprite) null, null);
 		script.addBrick(innerEndBrick);
 
-		IfLogicEndBrick outerEndBrick = new IfLogicEndBrick(null, null);
+		IfLogicEndBrick outerEndBrick = new IfLogicEndBrick((Sprite) null, null);
 		script.addBrick(outerEndBrick);
 
 		new BrickController().setControlBrickReferences(script.getBrickList());
@@ -226,7 +227,7 @@ public class BrickControllerTest {
 
 	@Test
 	public void testSettingIfElseBrickReferencesInScriptMissingEndBrick() {
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 
 		script.addBrick(new SetXBrick());
 		IfLogicBeginBrick outerBeginBrick = new IfLogicBeginBrick();
@@ -242,7 +243,7 @@ public class BrickControllerTest {
 		IfLogicElseBrick innerElseBrick = new IfLogicElseBrick(null);
 		script.addBrick(innerElseBrick);
 		script.addBrick(new SetXBrick());
-		IfLogicEndBrick innerEndBrick = new IfLogicEndBrick(null, null);
+		IfLogicEndBrick innerEndBrick = new IfLogicEndBrick((Sprite) null, null);
 		script.addBrick(innerEndBrick);
 
 		new BrickController().setControlBrickReferences(script.getBrickList());
@@ -261,7 +262,7 @@ public class BrickControllerTest {
 
 	@Test
 	public void testSettingIfThenBrickReferencesInCorrectScript() {
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 
 		script.addBrick(new SetXBrick());
 		IfThenLogicBeginBrick outerBeginBrick = new IfThenLogicBeginBrick();
@@ -291,7 +292,7 @@ public class BrickControllerTest {
 
 	@Test
 	public void testSettingIfThenBrickReferencesInScriptMissingBeginBrick() {
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 
 		script.addBrick(new SetXBrick());
 		script.addBrick(new SetXBrick());
@@ -318,7 +319,7 @@ public class BrickControllerTest {
 
 	@Test
 	public void testSettingIfThenBrickReferencesInScriptMissingNestedBeginBrick() {
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 
 		script.addBrick(new SetXBrick());
 		IfThenLogicBeginBrick outerBeginBrick = new IfThenLogicBeginBrick();
@@ -345,7 +346,7 @@ public class BrickControllerTest {
 
 	@Test
 	public void testSettingIfThenBrickReferencesInScriptMissingEndBrick() {
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 
 		script.addBrick(new SetXBrick());
 		IfThenLogicBeginBrick outerBeginBrick = new IfThenLogicBeginBrick();
@@ -371,7 +372,7 @@ public class BrickControllerTest {
 
 	@Test
 	public void testSettingLoopBrickReferencesInSimpleCorrectScript() {
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 
 		ForeverBrick beginBrick = new ForeverBrick();
 		script.addBrick(beginBrick);
@@ -390,7 +391,7 @@ public class BrickControllerTest {
 
 	@Test
 	public void testSettingLoopBrickReferencesInCorrectScript() {
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 
 		script.addBrick(new SetXBrick());
 		ForeverBrick outerBeginBrick = new ForeverBrick();
@@ -421,7 +422,7 @@ public class BrickControllerTest {
 
 	@Test
 	public void testSettingLoopBrickReferencesInScriptMissingEndBrick() {
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 
 		script.addBrick(new SetXBrick());
 		ForeverBrick outerBeginBrick = new ForeverBrick();

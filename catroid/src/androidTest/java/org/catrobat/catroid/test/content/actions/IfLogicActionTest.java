@@ -93,7 +93,7 @@ public class IfLogicActionTest {
 		validFormula.setRoot(new FormulaElement(ElementType.OPERATOR, Operators.SMALLER_THAN.name(), null,
 				new FormulaElement(ElementType.NUMBER, "1", null), new FormulaElement(ElementType.NUMBER, "2", null)));
 
-		testScript = new StartScript();
+		testScript = new StartScript(true);
 
 		repeatBrick = new RepeatBrick(2);
 		ifLogicBeginBrick = new IfLogicBeginBrick(validFormula);
@@ -135,7 +135,7 @@ public class IfLogicActionTest {
 		validFormula.setRoot(new FormulaElement(ElementType.OPERATOR, Operators.SMALLER_THAN.name(), null,
 				new FormulaElement(ElementType.NUMBER, "1", null), new FormulaElement(ElementType.NUMBER, "2", null)));
 
-		testScript = new StartScript();
+		testScript = new StartScript(true);
 
 		ifLogicBeginBrick = new IfLogicBeginBrick(validFormula);
 		ifLogicElseBrick = new IfLogicElseBrick(ifLogicBeginBrick);
@@ -165,7 +165,7 @@ public class IfLogicActionTest {
 		invalidFormula.setRoot(new FormulaElement(ElementType.OPERATOR, Operators.SMALLER_THAN.name(), null,
 				new FormulaElement(ElementType.NUMBER, "2", null), new FormulaElement(ElementType.NUMBER, "1", null)));
 
-		testScript = new StartScript();
+		testScript = new StartScript(true);
 
 		ifLogicBeginBrick = new IfLogicBeginBrick(invalidFormula);
 		ifLogicElseBrick = new IfLogicElseBrick(ifLogicBeginBrick);
@@ -224,7 +224,7 @@ public class IfLogicActionTest {
 		SetVariableBrick setVariableBrickIfFalse = new SetVariableBrick(new Formula(IF_FALSE_VALUE),
 				userVariable);
 
-		testScript = new StartScript();
+		testScript = new StartScript(true);
 		ifLogicBeginBrick = new IfLogicBeginBrick(formula);
 		ifLogicElseBrick = new IfLogicElseBrick(ifLogicBeginBrick);
 		ifLogicEndBrick = new IfLogicEndBrick(ifLogicBeginBrick, ifLogicElseBrick);

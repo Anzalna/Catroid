@@ -261,12 +261,12 @@ public class ScriptFragmentTest {
 		Sprite sprite = new SingleSprite("testSprite");
 		project.getDefaultScene().addSprite(sprite);
 
-		startScript = new StartScript();
+		startScript = new StartScript(true);
 		startScript.addBrick(new IfLogicBeginBrick());
 		startScript.addBrick(new SetXBrick());
 		startScript.addBrick(new IfLogicElseBrick(null));
 		startScript.addBrick(new ChangeXByNBrick());
-		startScript.addBrick(new IfLogicEndBrick(null, null));
+		startScript.addBrick(new IfLogicEndBrick((Sprite) null, null));
 
 		sprite.addScript(startScript);
 

@@ -241,7 +241,7 @@ public class SpriteControllerTest {
 		sprite = new Sprite("testSprite");
 		scene.addSprite(sprite);
 
-		StartScript script = new StartScript();
+		StartScript script = new StartScript(true);
 		PlaceAtBrick placeAtBrick = new PlaceAtBrick(0, 0);
 		script.addBrick(placeAtBrick);
 		sprite.addScript(script);

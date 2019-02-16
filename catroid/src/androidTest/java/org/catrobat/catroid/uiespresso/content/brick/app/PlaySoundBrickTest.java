@@ -203,7 +203,7 @@ public class PlaySoundBrickTest {
 		SoundManager.getInstance();
 		Project project = new Project(InstrumentationRegistry.getTargetContext(), projectName);
 		Sprite sprite = new Sprite("testSprite");
-		Script startScript = new StartScript();
+		Script startScript = new StartScript(true);
 
 		sprite.addScript(startScript);
 		project.getDefaultScene().addSprite(sprite);

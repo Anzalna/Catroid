@@ -184,7 +184,7 @@ public class NextLookActionTest {
 	private void createProject() throws IOException {
 		Project project = new Project(InstrumentationRegistry.getTargetContext(), projectName);
 		Sprite firstSprite = new SingleSprite("cat");
-		Script testScript = new StartScript();
+		Script testScript = new StartScript(true);
 
 		firstSprite.addScript(testScript);
 		project.getDefaultScene().addSprite(firstSprite);

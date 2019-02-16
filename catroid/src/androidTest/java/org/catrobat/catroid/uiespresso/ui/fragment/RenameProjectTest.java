@@ -183,7 +183,7 @@ public class RenameProjectTest {
 		Project project = new Project(InstrumentationRegistry.getTargetContext(), projectName);
 		Sprite sprite = new SingleSprite("firstSprite");
 
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 		script.addBrick(new SetXBrick(new Formula(BrickValues.X_POSITION)));
 		script.addBrick(new SetXBrick(new Formula(BrickValues.X_POSITION)));
 		sprite.addScript(script);

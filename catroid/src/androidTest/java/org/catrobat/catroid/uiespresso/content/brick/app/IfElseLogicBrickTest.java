@@ -27,6 +27,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import org.catrobat.catroid.R;
 import org.catrobat.catroid.content.Script;
+import org.catrobat.catroid.content.Sprite;
 import org.catrobat.catroid.content.bricks.ChangeXByNBrick;
 import org.catrobat.catroid.content.bricks.IfLogicBeginBrick;
 import org.catrobat.catroid.content.bricks.IfLogicElseBrick;
@@ -281,7 +282,7 @@ public class IfElseLogicBrickTest {
 		script.addBrick(new SetXBrick());
 		script.addBrick(new IfLogicElseBrick(null));
 		script.addBrick(new ChangeXByNBrick());
-		script.addBrick(new IfLogicEndBrick(null, null));
+		script.addBrick(new IfLogicEndBrick((Sprite) null, null));
 		script.addBrick(new SetYBrick());
 
 		new BrickController().setControlBrickReferences(script.getBrickList());

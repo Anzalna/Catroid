@@ -178,7 +178,7 @@ public class FormulaEditorFragmentTest {
 	public Project createProject(String projectName) {
 		Project project = new Project(InstrumentationRegistry.getTargetContext(), projectName);
 		Sprite sprite = new Sprite("testSprite");
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 
 		SetVariableBrick setVariableBrick = new SetVariableBrick(new Formula(1), new UserVariable("var"));
 		DataContainer dataContainer = project.getDefaultScene().getDataContainer();

@@ -62,7 +62,7 @@ public class EventActionTest {
 	public void setUp() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
 		sprite = new SingleSprite("testSprite");
 		createProjectWithSprite(sprite);
-		startScript = new StartScript();
+		startScript = new StartScript(true);
 		broadcastScript1 = new BroadcastScript(MESSAGE1);
 		sprite.addScript(startScript);
 		sprite.addScript(broadcastScript1);
@@ -152,7 +152,7 @@ public class EventActionTest {
 
 		broadcastScript1.addBrick(new WaitBrick(50));
 
-		Script startScript2 = new StartScript();
+		Script startScript2 = new StartScript(true);
 		startScript2.addBrick(new BroadcastWaitBrick(MESSAGE1));
 		startScript2.addBrick(new SetXBrick(new Formula(xPosition)));
 		sprite.addScript(startScript2);

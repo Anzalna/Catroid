@@ -44,7 +44,7 @@ public class StartScriptTest {
 	public void testStartScript() {
 		double size = 300;
 		Sprite testSprite = new SingleSprite("testSprite");
-		Script testScript = new StartScript();
+		Script testScript = new StartScript(true);
 		HideBrick hideBrick = new HideBrick();
 		SetSizeToBrick setSizeToBrick = new SetSizeToBrick(size);
 

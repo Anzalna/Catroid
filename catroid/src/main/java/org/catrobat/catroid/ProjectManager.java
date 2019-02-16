@@ -23,6 +23,7 @@
 package org.catrobat.catroid;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -46,6 +47,7 @@ import org.catrobat.catroid.io.StorageOperations;
 import org.catrobat.catroid.io.XstreamSerializer;
 import org.catrobat.catroid.ui.recyclerview.controller.BrickController;
 import org.catrobat.catroid.ui.settingsfragments.SettingsFragment;
+import org.catrobat.catroid.utils.Utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -441,7 +443,31 @@ public final class ProjectManager {
 		}
 	}
 
-	private class SaveProjectAsynchronousTask extends AsyncTask<Void, Void, Void> {
+	public void deleteCurrentProject(Context context) throws IllegalArgumentException, IOException {
+		deleteProject(project.getName(), context);
+	}
+	public void deleteProject(String projectName, Context context) throws IllegalArgumentException, IOException {
+		Log.d(TAG, "deleteProject " + projectName);
+		if (XstreamSerializer.getInstance().projectExists(projectName)) {
+			XstreamSerializer.getInstance().deleteProject(projectName);
+		}
+
+		if (project != null && project.getName().equals(projectName)) {
+			Log.d(TAG, "deleteProject(): project instance set to null");
+
+			project = null;
+
+			if (context != null) {
+				SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+				String currentProjectName = sharedPreferences.getString(Constants.PREF_PROJECTNAME_KEY, "notFound");
+				if (!currentProjectName.equals("notFound")) {
+
+					Utils.removeFromPreferences(context, Constants.PREF_PROJECTNAME_KEY);
+				}
+			}
+		}
+	}
+    private class SaveProjectAsynchronousTask extends AsyncTask<Void, Void, Void> {
 
 		@Override
 		protected Void doInBackground(Void... params) {

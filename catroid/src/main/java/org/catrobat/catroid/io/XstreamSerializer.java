@@ -25,6 +25,7 @@ package org.catrobat.catroid.io;
 import android.content.Context;
 import android.util.Log;
 
+import com.facebook.internal.Utility;
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import com.thoughtworks.xstream.converters.reflection.FieldDictionary;
@@ -209,6 +210,7 @@ import org.catrobat.catroid.physics.content.bricks.TurnRightSpeedBrick;
 import org.catrobat.catroid.stage.StageListener;
 import org.catrobat.catroid.utils.FileMetaDataExtractor;
 import org.catrobat.catroid.utils.StringFinder;
+import org.catrobat.catroid.utils.Utils;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -778,5 +780,9 @@ public final class XstreamSerializer {
 			Log.e(TAG, Log.getStackTraceString(e));
 		}
 		return null;
+	}
+
+	public void deleteProject(String projectName) {
+		Utility.deleteDirectory(new File(Utils.buildProjectPath(projectName)));
 	}
 }

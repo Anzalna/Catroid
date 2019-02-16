@@ -110,7 +110,7 @@ public class BroadcastAndWaitBrickMessageContainerTest {
 	private void createProject(String projectName) {
 		project = new Project(InstrumentationRegistry.getTargetContext(), projectName);
 		sprite = new Sprite("testSprite");
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 
 		sprite.addScript(script);
 

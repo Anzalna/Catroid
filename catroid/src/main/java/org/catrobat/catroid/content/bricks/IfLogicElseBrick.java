@@ -40,6 +40,9 @@ public class IfLogicElseBrick extends BrickBaseType implements ControlStructureB
 	public IfLogicElseBrick(IfElseLogicBeginBrick ifBeginBrick) {
 		this.ifBeginBrick = ifBeginBrick;
 	}
+	public IfLogicElseBrick(Sprite object, LoopEndBrick loopEndBrick) {
+		super();
+	}
 
 	public IfElseLogicBeginBrick getIfBeginBrick() {
 		return ifBeginBrick;

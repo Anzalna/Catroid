@@ -91,7 +91,7 @@ public class StageSimpleTest {
 
 		// blue Sprite
 		Sprite blueSprite = new SingleSprite("blueSprite");
-		StartScript blueStartScript = new StartScript();
+		StartScript blueStartScript = new StartScript(true);
 		LookData blueLookData = new LookData();
 		String blueImageName = "blue_image.bmp";
 

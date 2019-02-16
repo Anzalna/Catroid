@@ -132,7 +132,7 @@ public class FormulaEditorComputeDialogTest {
 	public Project createProject(String projectName) {
 		Project project = new Project(InstrumentationRegistry.getTargetContext(), projectName);
 		Sprite sprite = new Sprite("testSprite");
-		Script script = new StartScript();
+		Script script = new StartScript(true);
 
 		Formula noteFormula = new Formula(someIntegerVaule);
 		script.addBrick(new NoteBrick(noteFormula));

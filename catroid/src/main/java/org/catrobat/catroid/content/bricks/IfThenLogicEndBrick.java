@@ -39,6 +39,9 @@ public class IfThenLogicEndBrick extends BrickBaseType implements ControlStructu
 	public IfThenLogicEndBrick(IfThenLogicBeginBrick ifBeginBrick) {
 		this.ifBeginBrick = ifBeginBrick;
 	}
+	public IfThenLogicEndBrick(Sprite object, LoopEndBrick loopEndBrick) {
+		super();
+	}
 
 	public IfThenLogicBeginBrick getIfBeginBrick() {
 		return ifBeginBrick;

@@ -188,7 +188,7 @@ public class ParserTestSensors {
 	private void createProject() {
 		this.project = new Project(InstrumentationRegistry.getTargetContext(), "testProject");
 		firstSprite = new SingleSprite("zwoosh");
-		startScript1 = new StartScript();
+		startScript1 = new StartScript(true);
 		firstSprite.addScript(startScript1);
 		Brick changeBrick = new ChangeSizeByNBrick(10);
 		startScript1.addBrick(changeBrick);
